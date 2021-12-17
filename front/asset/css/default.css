@@ -30,10 +30,11 @@ figcaption {
 
 /* 링크 초기화 */
 a {
+    color: #222;
     text-decoration: none;
 }
 a:hover {
-    color: #bf1e66;
+    color: #2db0e6;
 }
 
 /* 폰트 초기화*/
@@ -65,9 +66,27 @@ img,
 video {
     width: 100%;
 }
-
+/*---------------default------------  */
 header nav ul li {
     list-style: none;
+}
+
+.logo {
+    width: 20%;
+}
+
+#header {
+    background-color: #2f3036;
+}
+#header a {
+    color: #fff;
+}
+
+.login {
+    right: 5%;
+    margin-top: 1%;
+    margin-right: 1%;
+    float: right;
 }
 
 main {
@@ -78,7 +97,16 @@ main {
     background-color: #36393f;
 }
 
-/* 기본 버튼 */
+button {
+    color: #fff;
+    width: 200px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: #b087bb;
+    cursor: pointer;
+}
+
 button {
     color: #fff;
     width: 200px;
