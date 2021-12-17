@@ -1,3 +1,10 @@
+html {
+    font-size: 20px;
+}
+body {
+    font-size: 1rem;
+}
+
 body,
 div,
 ul,
@@ -30,11 +37,8 @@ figcaption {
 
 /* 링크 초기화 */
 a {
-    color: #222;
+    /* color: #222; */
     text-decoration: none;
-}
-a:hover {
-    color: #2db0e6;
 }
 
 /* 폰트 초기화*/
@@ -67,56 +71,46 @@ video {
     width: 100%;
 }
 /*---------------default------------  */
-header nav ul li {
-    list-style: none;
-}
-
-.logo {
-    width: 20%;
-}
 
 #header {
+    display: flex;
+    padding: 0 1rem;
+    justify-content: space-between;
     background-color: #2f3036;
 }
-#header a {
-    color: #fff;
+
+#header h1 {
+    height: 100%;
+    line-height: 100%;
 }
 
-.login {
-    right: 5%;
-    margin-top: 1%;
-    margin-right: 1%;
-    float: right;
+#header h1 a {
+    display: inline-block;
+    width: 12rem;
+    height: 2.5rem;
+    background: url(../img/logo_horizon.png) center no-repeat;
+    background-size: contain;
 }
 
-main {
+#header .default-menu ul {
+    height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #36393f;
+    align-items: center; /*밑으로 붙이길 원한다면 flex-end*/
 }
 
-button {
+#header .default-menu ul li a {
+    display: block;
+    width: 3.5rem;
+    height: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.8rem;
+    font-size: 0.9rem;
     color: #fff;
-    width: 200px;
-    height: 50px;
-    border: none;
-    border-radius: 5px;
-    background-color: #b087bb;
-    cursor: pointer;
+    transition: color 0.3s;
 }
 
-button {
-    color: #fff;
-    width: 200px;
-    height: 50px;
-    border: none;
-    border-radius: 5px;
-    background-color: #b087bb;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #217fa7;
+#header .default-menu ul li a:hover {
+    color: #2db0e6;
 }
