@@ -48,8 +48,11 @@ textarea,
 select,
 button,
 table {
-    font-family: "Noto Sans KR";
-    line-height: 1.5;
+    font: 600 16px/18px "Open Sans", sans-serif;
+}
+
+body {
+    background-color: #36393f;
 }
 
 /* 폰트 스타일 초기화 */

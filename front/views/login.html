@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Fruit</title>
+        <title>METABOOK</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../asset/css/login.css" />
         <link rel="stylesheet" href="../asset/css/default.css" />
+		
     </head>
     <body>
 	<header id="header">
-            <div class="menuBar">
-                <nav class="menuBox">
-                    <a href="#">
-                        <img
-                            class="logo"
-                            src="../asset/img/logo_horizon.png"
-                            alt="META BOOK"
-                        />
-                    </a>
-                    <a class="login" href="#">로그인</a>
-                </nav>
-            </div>
+            <h1>
+                <a href="index.html">
+                    <!-- <img class="logo" src="./asset/img/logo_horizon.png" alt="META BOOK"/> -->
+                </a>
+            </h1>
+            <nav class="default-menu">
+                <ul>
+                    <li><a href="">로그인</a></li>
+                </ul>
+            </nav>
+        
         </header>
 
     <div class="login-wrap">
@@ -40,7 +40,10 @@
 				</div>
 				<div class="group">
 					<label for="pass" class="label">비밀번호</label>
-					<input id="pass" type="password" class="input" data-type="password">
+					<div class="inputDiv">
+					<input id="pass" type="password" class="input" type="password">
+					<img src="../asset/img/login/eyeslash.png" id="togglePass">
+					</div>
 				</div>
 				<div class="group">
 					<input type="submit" class="button" value="로그인">
@@ -60,11 +63,17 @@
 				</div>
 				<div class="group">
 					<label for="pass" class="label">비밀번호</label>
-					<input id="pass" type="password" class="input" data-type="password">
+					<div class="inputDiv">
+					<input id="pass" type="password" class="input" type="password">
+					<img src="../asset/img/login/eyeslash.png" id="togglePass_Sign">
+					</div>
 				</div>
 				<div class="group">
 					<label for="pass" class="label">비밀번호 확인</label>
-					<input id="pass" type="password" class="input" data-type="password">
+					<div class="inputDiv">
+					<input id="pass" type="password" class="input" type="password">
+					<img src="../asset/img/login/eyeslash.png" id="togglePass_Sign_Check">
+					</div>
 				</div>
 				<div class="group">
 					<input type="submit" class="button" value="회원가입">
@@ -76,4 +85,9 @@
 		</div>
 	</div>
 </div>
+
+
+<script src="../js/login.js"></script>
+</body>
+
 </html>
