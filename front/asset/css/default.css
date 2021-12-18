@@ -128,10 +128,12 @@ video {
 }
 
 .site-footer .footer-container {
-    width: 100%;
+    /* width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: "text icon";
+    grid-template-areas: "text icon"; */
+    display: flex;
+    justify-content: space-between;
 }
 .site-footer .footer-text {
     grid-area: text;
@@ -148,9 +150,9 @@ video {
 }
 
 .site-footer .social-icons {
-    text-align: right;
+    /* text-align: right;
     width: 100%;
-    /* padding-right: 100px; */
+    padding-right: 100px; */
 }
 .site-footer .social-icons a {
     width: 40px;
@@ -166,11 +168,12 @@ video {
 }
 
 .social-icons {
+    padding-right: 60px;
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
     display: block;
-    width: 300px;
+    /* width: 300px; */
 }
 .social-icons li {
     display: inline-block;
