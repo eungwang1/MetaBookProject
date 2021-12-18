@@ -32,9 +32,16 @@ a {
     margin: 0 0 24px;
 }
 
+#section-login {
+    height: calc(100vh - 111px - 53px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .login-wrap {
     width: 100%;
-    margin: 100px auto;
+    margin: 0 auto;
     max-width: 525px;
     min-height: 670px;
     position: relative;

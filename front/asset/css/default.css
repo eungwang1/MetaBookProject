@@ -150,7 +150,7 @@ video {
 .site-footer .social-icons {
     text-align: right;
     width: 100%;
-    padding-right: 100px;
+    /* padding-right: 100px; */
 }
 .site-footer .social-icons a {
     width: 40px;
