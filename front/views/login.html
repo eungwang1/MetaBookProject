@@ -7,20 +7,19 @@
         <title>META BOOK</title>
         <link rel="stylesheet" href="../asset/css/login.css" />
         <link rel="stylesheet" href="../asset/css/default.css" />
-		
     </head>
     <body>
-			<header id="header">
-								<h1>
-										<a href="index.html">
-												<!-- <img class="logo" src="./asset/img/logo_horizon.png" alt="META BOOK"/> -->
-										</a>
-								</h1>
-								<nav class="default-menu">
-										<ul>
-												<li><a href="">로그인</a></li>
-										</ul>
-								</nav>
+		<header id="header">
+			<h1>
+				<a href="index.html">
+					<!-- <img class="logo" src="./asset/img/logo_horizon.png" alt="META BOOK"/> -->
+					</a>
+					</h1>
+					<nav class="default-menu">
+					<ul>
+					<li><a href="">로그인</a></li>
+					</ul>
+					</nav>
 				</header>
 				<section id="section-login">
 
@@ -33,18 +32,20 @@
 						<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">로그인</label>
 						<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">회원가입</label>
 						
-						<!-- 로그인 폼 -->
+						
 						<div class="login-form">
+							<!-- 로그인 폼 -->
+							<form action="../test.html" method="post" onsubmit="return SignInCheck()" name ="signin">
 							<div class="sign-in-htm">
 								<div class="group">
 									<label for="user" class="label">이메일</label>
-									<input id="user" type="text" class="input">
+									<input id="user" type="text" class="input" name="email">
 								</div>
 
 								<div class="group">
 									<label for="pass" class="label">비밀번호</label>
 									<div class="inputDiv">
-										<input id="pass" type="password" class="input" type="password">
+										<input id="pass" type="password" class="input" type="password" name="password">
 										<img src="../asset/img/login/eyeslash.png" id="togglePass">
 									</div>
 								</div>
@@ -53,33 +54,33 @@
 									<input type="submit" class="button" value="로그인">
 								</div>
 							</div>
-								
+							</form>	
 								
 							<!-- 회원가입 폼 -->
+							<form action="/join" method="post" onsubmit="return SignUpCheck()" name ="signup">
 							<div class="sign-up-htm">
 								
 								<div class="group">
 									<label for="user" class="label">닉네임</label>
-									<input id="user" type="text" class="input">
+									<input id="user" type="text" class="input" name ="nickname">
 								</div>
 
 								<div class="group">
 									<label for="pass" class="label">이메일</label>
-									<input id="pass" type="text" class="input">
+									<input id="pass" type="text" class="input" name="email">
 								</div>
 
 								<div class="group">
 									<label for="pass" class="label">비밀번호</label>
 									<div class="inputDiv">
-									<input id="pass" type="password" class="input" type="password">
+									<input id="pass" type="password" class="input" type="password" name="password">
 									<img src="../asset/img/login/eyeslash.png" id="togglePass_Sign">
 								</div>
-
 							</div>
 								<div class="group">
 									<label for="pass" class="label">비밀번호 확인</label>
 									<div class="inputDiv">
-										<input id="pass" type="password" class="input" type="password">
+										<input id="pass" type="password" class="input" type="password" name = "password_confirm">
 										<img src="../asset/img/login/eyeslash.png" id="togglePass_Sign_Check">
 									</div>
 								</div>
@@ -91,6 +92,7 @@
 									<label for="tab-1">Already Member?</a>
 								</div>
 							</div>
+							</form>
 
 						</div>
 					</div>
@@ -118,4 +120,6 @@
 <script src="../js/login.js"></script>
 </body>
 
+        <script src="../js/login.js"></script>
+    </body>
 </html>
