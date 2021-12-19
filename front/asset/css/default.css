@@ -48,8 +48,11 @@ textarea,
 select,
 button,
 table {
-    font-family: "Noto Sans KR";
-    line-height: 1.5;
+    font: 600 16px/18px "Open Sans", sans-serif;
+}
+
+body {
+    background-color: #36393f;
 }
 
 /* 폰트 스타일 초기화 */
@@ -113,4 +116,74 @@ video {
 
 #header .default-menu ul li a:hover {
     color: #2db0e6;
+}
+
+/* footer css */
+.site-footer {
+    background-color: #2f3036;
+    padding: 45px 0 20px;
+    font-size: 15px;
+    line-height: 24px;
+    color: #737373;
+}
+
+.site-footer .footer-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "text icon";
+}
+.site-footer .footer-text {
+    grid-area: text;
+}
+.site-footer .footer-icon {
+    grid-area: icon;
+}
+.site-footer a {
+    color: #737373;
+}
+.site-footer a:hover {
+    color: #3366cc;
+    text-decoration: none;
+}
+
+.site-footer .social-icons {
+    text-align: right;
+    width: 100%;
+    padding-right: 100px;
+}
+.site-footer .social-icons a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 6px;
+    margin-right: 0;
+    border-radius: 100%;
+    background-color: #33353d;
+}
+.copyright-text {
+    padding-left: 30px;
+}
+
+.social-icons {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    display: block;
+    width: 300px;
+}
+.social-icons li {
+    display: inline-block;
+}
+
+.social-icons a {
+    background-color: #eceeef;
+    color: #818a91;
+    display: inline-block;
+    line-height: 44px;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    margin-right: 8px;
+    border-radius: 100%;
 }

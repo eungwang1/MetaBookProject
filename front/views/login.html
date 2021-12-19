@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Fruit</title>
-        <meta charset="utf-8" />
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>META BOOK</title>
         <link rel="stylesheet" href="../asset/css/login.css" />
         <link rel="stylesheet" href="../asset/css/default.css" />
+		
     </head>
     <body>
 	<header id="header">
-            <div class="menuBar">
-                <nav class="menuBox">
-                    <a href="#">
-                        <img
-                            class="logo"
-                            src="../asset/img/logo_horizon.png"
-                            alt="META BOOK"
-                        />
-                    </a>
-                    <a class="login" href="#">로그인</a>
-                </nav>
-            </div>
-        </header>
+            <h1>
+                <a href="index.html">
+                    <!-- <img class="logo" src="./asset/img/logo_horizon.png" alt="META BOOK"/> -->
+                </a>
+            </h1>
+            <nav class="default-menu">
+                <ul>
+                    <li><a href="">로그인</a></li>
+                </ul>
+            </nav>
+    </header>
 
-    <div class="login-wrap">
-
+    <article class="login-wrap">
 	<div class="login-html">
-
     <div class = "header_logo">
       <img src="../asset/img/logo.png" class=logo_img>
     </div>
-
+		
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">로그인</label>
 		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">회원가입</label>
+		
+		<!-- 로그인 폼 -->
 		<div class="login-form">
 			<div class="sign-in-htm">
 				<div class="group">
@@ -40,31 +41,40 @@
 				</div>
 				<div class="group">
 					<label for="pass" class="label">비밀번호</label>
-					<input id="pass" type="password" class="input" data-type="password">
+					<div class="inputDiv">
+					<input id="pass" type="password" class="input" type="password">
+					<img src="../asset/img/login/eyeslash.png" id="togglePass">
+					</div>
 				</div>
 				<div class="group">
 					<input type="submit" class="button" value="로그인">
 				</div>
 				
 				
-
+			<!-- 회원가입 폼 -->
 			</div>
 			<div class="sign-up-htm">
 				<div class="group">
 					<label for="user" class="label">닉네임</label>
 					<input id="user" type="text" class="input">
 				</div>
-        <div class="group">
+        	<div class="group">
 					<label for="pass" class="label">이메일</label>
 					<input id="pass" type="text" class="input">
 				</div>
 				<div class="group">
 					<label for="pass" class="label">비밀번호</label>
-					<input id="pass" type="password" class="input" data-type="password">
+					<div class="inputDiv">
+					<input id="pass" type="password" class="input" type="password">
+					<img src="../asset/img/login/eyeslash.png" id="togglePass_Sign">
+					</div>
 				</div>
 				<div class="group">
 					<label for="pass" class="label">비밀번호 확인</label>
-					<input id="pass" type="password" class="input" data-type="password">
+					<div class="inputDiv">
+					<input id="pass" type="password" class="input" type="password">
+					<img src="../asset/img/login/eyeslash.png" id="togglePass_Sign_Check">
+					</div>
 				</div>
 				<div class="group">
 					<input type="submit" class="button" value="회원가입">
@@ -73,7 +83,30 @@
 					<label for="tab-1">Already Member?</a>
 				</div>
 			</div>
+
 		</div>
 	</div>
-</div>
+	</article>
+
+<!-- footer -->
+	<footer class="site-footer">
+      <div class="footer-container">
+          <div class="footer-text">
+            <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by 
+         	<a href="https://kdt-gitlab.elice.io/sw-001-project/team10">EliceTeam10</a>.
+            </p>
+		  </div>
+          <div class="footer-icon">
+            <ul class="social-icons">
+			  <li><a href="https://kdt-gitlab.elice.io/sw-001-project/team10/project-template"><img src= "../asset/img/gitlab-logo.png"></a></li>
+              <li><a href="https://www.notion.so/elice/10-7f20edf1143e4f55b596f6dda0acdabf"><img src= "../asset/img/elice-logo.png"></a></li>  
+            </ul>
+          </div>      
+      </div>
+</footer>
+
+
+<script src="../js/login.js"></script>
+</body>
+
 </html>
