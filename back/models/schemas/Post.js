@@ -1,17 +1,16 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-    name: {
+const postSchema = mongoose.Schema({
+    author: {
+        // User_id
         type: String,
-        unique: true,
         require: true,
     },
-    email: {
+    title: {
         type: String,
-        unique: true,
         require: true,
     },
-    introduce: {
+    content: {
         type: String,
         require: true,
     },
@@ -19,18 +18,24 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
-    metaThumbUrl: {
+    thumbnailUrl: {
         type: String,
         require: true,
     },
-    password: {
+    likes: {
+        type: Array,
+        // require: true,
+    },
+    comments: {
         type: String,
         require: true,
     },
-    profileImg: {
-        type: String,
-        require: true,
+    tags: {
+        type: Array,
+        // require: true,
     },
 });
 
-module.exports = mongoose.model("User", userSchema);
+const Post = mongoose.model("Post", postSchema);
+
+module.exports = { Post };
