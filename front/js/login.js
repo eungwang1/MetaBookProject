@@ -2,10 +2,10 @@ function passwordToggle(e) {
     let x = e.target.previousElementSibling;
     if (x.type === "password") {
         x.type = "text";
-        e.target.src = "../asset/img/login/eye.png";
+        e.target.src = "/images/login/eye.png";
     } else {
         x.type = "password";
-        e.target.src = "../asset/img/login/eyeslash.png";
+        e.target.src = "/images/login/eyeslash.png";
     }
 }
 
@@ -55,6 +55,42 @@ function SignUpCheck() {
     }
     return true;
 }
+
+document.getElementById("user-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    SignInCheck();
+    const email =
+        document.forms["signin"].querySelector('[name="email"]').value;
+    const password = document.forms["signin"].querySelector(
+        '[name = "password"]'
+    ).value;
+    try {
+        await axios.post("/auth", { email, password });
+        alert("로그인 성공");
+        location.href = "/posts";
+    } catch (err) {
+        alert("로그인 실패");
+        console.log(err);
+    }
+});
+
+document.getElementById("signup-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    SignUpCheck();
+    const email =
+        document.forms["signup"].querySelector('[name="email"]').value;
+    const password = document.forms["signup"].querySelector(
+        '[name = "password"]'
+    ).value;
+    try {
+        await axios.post("/join", { email, password, nickname });
+        alert("회원가입 완료");
+        location.href = "/login";
+    } catch (err) {
+        alert("회원가입 실패");
+        console.log(err);
+    }
+});
 
 let $togglePass = document.querySelector("#togglePass");
 let $togglePass_Sign = document.querySelector("#togglePass_Sign");
