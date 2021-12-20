@@ -7,6 +7,7 @@
         <title>META BOOK</title>
         <link rel="stylesheet" href="../asset/css/login.css" />
         <link rel="stylesheet" href="../asset/css/default.css" />
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body>
 		<header id="header">
@@ -58,7 +59,6 @@
 							</form>	
 								
 							<!-- 회원가입 폼 -->
-							<!-- <form action="/join" method="post" onsubmit="return SignUpCheck()" name ="signup"> -->
 							<form id= "signup-form" name ="signup">
 							<div class="sign-up-htm">
 								
@@ -70,12 +70,14 @@
 								<div class="group">
 									<label for="pass" class="label">이메일</label>
 									<input id="pass" type="text" class="input" name="email">
+									<span id="error-email-check" class="error-email-check"></span>
 								</div>
 
 								<div class="group">
 									<label for="pass" class="label">비밀번호</label>
 									<div class="inputDiv">
 									<input id="pass" type="password" class="input" type="password" name="password">
+									<span id="error-password" class="error-password"></span>
 									<img src="../asset/img/login/eyeslash.png" id="togglePass_Sign">
 								</div>
 							</div>
@@ -83,6 +85,7 @@
 									<label for="pass" class="label">비밀번호 확인</label>
 									<div class="inputDiv">
 										<input id="pass" type="password" class="input" type="password" name = "password_confirm">
+										<span id="error-password-check" class="error-password-check"></span>
 										<img src="../asset/img/login/eyeslash.png" id="togglePass_Sign_Check">
 									</div>
 								</div>
@@ -90,9 +93,9 @@
 								<div class="group">
 										<input type="submit" class="button" value="회원가입">
 								</div>
-								<div class="foot-lnk">
+								<!-- <div class="foot-lnk">
 									<label for="tab-1">Already Member?</a>
-								</div>
+								</div> -->
 							</div>
 							</form>
 
