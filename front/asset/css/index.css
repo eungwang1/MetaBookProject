@@ -1,89 +1,131 @@
-#wrapper {
-    width: 100%;
-    min-width: 1060px;
-    text-align: center;
-    position: relative;
+.top_board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    background-color: #4e525379;
 }
 
-.category li {
-    margin: 2%;
-    font-size: 24px;
-    text-align: center;
-    color: white;
-    margin: 20px 0 20px 0;
-}
-
-span.title,
-span.writer {
-    display: block;
-    text-align: left;
-}
-
-#board_page {
-    margin: 0 auto;
+.top_board h2 {
+    color: #fff;
+    padding: 1rem 0 2rem;
 }
 
 .top_board {
     display: flex;
     justify-content: center;
 }
+
 .top_board .top {
     display: flex;
     justify-content: center;
     gap: 40px;
-    margin: 10px 10px;
+    position: relative;
 }
 
-.top_board .top img {
+.top_board .top a {
+    width: 17rem;
+    height: 17rem;
+    position: relative;
+}
+
+.top_board .top figure img {
     object-fit: cover;
-    width: 300px;
-    height: 300px;
+    width: 17rem;
+    height: 17rem;
+    border-radius: 10px;
 }
 
-.btn_write_board {
+.top_board .top figure figcaption {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+        0deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(0, 0, 0, 0.6502976190476191) 10%,
+        rgba(0, 212, 255, 0) 100%
+    );
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    position: absolute;
+    bottom: 0;
+    z-index: 999;
+    border-radius: 10px;
 }
 
-.btn_write_board .btn_write {
-    width: 160px;
-    height: 25px;
-    padding-top: 11px;
-    display: flex;
+.top_board .top figure figcaption span {
+    display: block;
     color: #fff;
-    justify-content: center;
-    background-color: #2db0e6;
-    border-radius: 3px;
-    margin: 20px 0px 10px 0px;
 }
 
 .board_list {
-    /* display: flex; */
-    width: 1070px;
+    display: flex;
+    flex-direction: column;
+    width: 70rem;
     margin: 0 auto;
-    padding-top: 10px;
 }
 
-.board_list article {
-    box-sizing: border-box;
+.board_list .board_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0 3rem;
+    color: #fff;
+}
 
-    border-bottom: 1px solid white;
-    overflow: hidden;
-    margin-left: -7px;
-    text-align: left;
+.board_list .board_title .write_btn {
+    color: #fff;
+    padding: 0.5rem 1rem;
+    background-color: #2db0e6;
+    border-radius: 0.25rem;
+}
+
+.board_list article ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .board_list article ul li {
-    display: inline-block;
-    width: 25%;
-    padding: 0px;
-    margin: 0 0 30px -3px;
-    padding-left: 10px;
-    float: left;
+    width: 16.75rem;
+    height: 16.75rem;
     box-sizing: border-box;
+    position: relative;
 }
-.board_list article ul li img {
-    width: 260px;
-    max-width: 100%;
-    height: 260px;
+
+.board_list article ul li figure img {
+    object-fit: cover;
+    width: 16.75rem;
+    height: 16.75rem;
+    border-radius: 10px;
+}
+
+.board_list article ul li figure figcaption {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+        0deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(0, 0, 0, 0.6502976190476191) 10%,
+        rgba(0, 212, 255, 0) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    position: absolute;
+    bottom: 0;
+    z-index: 999;
+    border-radius: 10px;
+}
+
+.board_list article ul li figure figcaption span {
+    display: block;
+    color: #fff;
 }

@@ -35,7 +35,7 @@ a {
 }
 
 #section-login {
-    height: calc(100vh - 111px - 53px);
+    height: calc(100vh - 76px - 53px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,7 +48,8 @@ a {
     max-width: 525px;
     height: 740px;
     position: relative;
-    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+        0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 .login-html {
     width: 100%;
@@ -189,7 +190,13 @@ a {
 /* style="margin-left: 20%; display:inline;
                 vertical-align: middlel; width: 5%; height: 6%;" */
 
-.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm {
+.login-html
+    .sign-in:checked
+    + .tab
+    + .sign-up
+    + .tab
+    + .login-form
+    .sign-in-htm {
     transform: rotate(0);
 }
 .login-html .sign-up:checked + .tab + .login-form .sign-up-htm {
