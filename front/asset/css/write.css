@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 53px - 128px);
+    height: calc(100vh - 53px - 111px);
 }
 
 #write-main #write-form {
@@ -20,19 +20,21 @@
 
 #write-main #write-form form input,
 #write-main #write-form form textarea {
-    padding: 0.5rem;
+    box-sizing: border-box;
+    padding: 1rem;
     color: #fff;
     background-color: #36393f;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     border-radius: 0.3rem;
     box-shadow: none;
     resize: none;
+    transition: all 0.3s ease;
 }
 
 #write-main #write-form form input:focus,
 #write-main #write-form form textarea:focus {
     outline: none;
-    border: 1px solid #2db0e6;
+    border: 2px solid #2db0e6;
 }
 
 #write-main #write-form .form-left {
@@ -50,30 +52,72 @@
     position: relative;
 }
 
-#write-main #write-form .form-left #title {
+#write-main #write-form .form-left #post_title {
     height: 5%;
 }
 
-#write-main #write-form .form-left #content {
+#write-main #write-form .form-left #post_content {
     height: 95%;
 }
 
-#write-main #write-form .form-right #upload-file {
+#write-main #write-form .form-right .filebox {
+    height: 60%;
+    position: relative;
+}
+
+#write-main #write-form .form-right .filebox #upload-file {
     display: none;
 }
 
-#write-main #write-form .form-right #file-button {
+#write-main #write-form .form-right .filebox #file-button {
+    box-sizing: border-box;
+    display: block;
     padding: 0.5rem;
     color: #fff;
-    background-color: #36393f;
-    border: 1px solid #fff;
+    transition: all 0.3s ease;
+    border: 2px solid #fff;
     border-radius: 0.3rem;
     box-shadow: none;
     resize: none;
-    height: 60%;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
-#write-main #write-form .form-right #link {
+#write-main #write-form .form-right .filebox #file-button:hover {
+    border: 2px solid #2db0e6;
+}
+
+#write-main #write-form .form-right .filebox .display_box {
+    z-index: -1;
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#write-main #write-form .form-right .filebox .display_box span {
+}
+
+#write-main #write-form .form-right .filebox .display_box .display_thumb {
+    display: none;
+}
+
+#write-main #write-form .form-right .filebox .display_box .display_thumb.show {
+    display: block;
+    /* width: 80%; */
+    height: 80%;
+    object-fit: cover;
+}
+
+#write-main #write-form .form-right #post_link {
     height: 8%;
 }
 
