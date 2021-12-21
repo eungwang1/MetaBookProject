@@ -25,6 +25,10 @@
         "multer": "^1.4.4",
         "nodemon": "^2.0.15",
         "passport": "^0.5.1",
-        "passport-local": "^1.0.0"
+        "passport-local": "^1.0.0",
+        "validator": "^13.7.0"
+    },
+    "devDependencies": {
+        "pug": "^3.0.2"
     }
 }
