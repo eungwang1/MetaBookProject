@@ -1,65 +1,71 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>META BOOK</title>
-        <link rel="stylesheet" href="../asset/css/default.css" />
-        <link rel="stylesheet" href="../asset/css/write.css">
-    </head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>META BOOK</title>
+		<link rel="stylesheet" href="../asset/css/default.css" />
+		<link rel="stylesheet" href="../asset/css/write.css">
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script defer src="../js/write.js"></script>
+   </head>
 
-    <body>
+   <body>
         <header id="header">
             <h1>
-                <a href="index.html">
-                </a>
+                <a href="../index.html"></a>
             </h1>
             <nav class="default-menu">
-                <ul>
-                    <li><a href="">로그인</a></li>
-                </ul>
+               <ul>
+                  <li><a href="">로그인</a></li>
+               </ul>
             </nav>
         </header>
+
         <!-- form main -->
-        <main id="write-main" role="main">
-          <article id="write-form">
-            <form action="#">
-              <div class="form-left">
+         <main id="write-main" role="main">
+          	<article id="write-form">
+            	<form>
+              		<div class="form-left">
+							<input type="text" id="post_title" placeholder="제목(필수 항목)">
+							<textarea type="text" id="post_content" placeholder="설명"></textarea>
+              		</div>
 
-                <!-- <label for="title">제목</label> -->
-                <input type="text" id="title" placeholder="제목(필수 항목)">
+              		<div class="form-right">
+						   <div class="filebox">
+								<div class="display_box">
+									<img class="display_thumb" src="" alt="">
+									<span>파일 업로드</span>
+								</div>
+								<label id="file-button" for="upload-file"></label>
+								<input type="file" id="upload-file" accept=".jpg, .png" >
+							</div>
 
-                <!-- <label for="content">내용</label> -->
-                <textarea type="text" id="content" placeholder="설명"></textarea>
+							<input type="text" id="post_link" placeholder="자신의 메타버스 링크를 입력해주세요">
+							<button type="submit" id="write-submit">작성 완료</button>
+	
+						</div>
+	            </form>
+				</article>
+				
+         </main>
 
-              </div>
-              <div class="form-right">
-                <!-- <label for="title">제목</label> -->
-                <label id="file-button" for="upload-file"></label>
-                <input type="file" id="upload-file">
-                <input type="text" id="link" placeholder="자신의 메타버스 링크를 입력해주세요">
-                <button type="submit" id="write-submit">작성 완료</button>
-              </div>
-            </form>
-          </article>
-        </main>
-
-        <!-- footer -->
-        <footer class="site-footer">
-          <div class="footer-container">
-              <div class="footer-text">
-                <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by 
-               <a href="https://kdt-gitlab.elice.io/sw-001-project/team10">EliceTeam10</a>.
-                </p>
-          </div>
-              <div class="footer-icon">
-                <ul class="social-icons">
-            <li><a href="https://kdt-gitlab.elice.io/sw-001-project/team10/project-template"><img src= "../asset/img/gitlab-logo.png"></a></li>
-                  <li><a href="https://www.notion.so/elice/10-7f20edf1143e4f55b596f6dda0acdabf"><img src= "../asset/img/elice-logo.png"></a></li>  
-                </ul>
-              </div>      
-          </div>
-    </footer>
-    </body>
+		<!-- footer -->
+		<footer class="site-footer">
+			<div class="footer-container">
+				<div class="footer-text">
+					<p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by 
+						<a href="https://kdt-gitlab.elice.io/sw-001-project/team10">EliceTeam10</a>.
+					</p>
+				</div>
+				<div class="footer-icon">
+					<ul class="social-icons">
+						<li><a href="https://kdt-gitlab.elice.io/sw-001-project/team10/project-template"><img src= "../asset/img/gitlab-logo.png"></a></li>
+						<li><a href="https://www.notion.so/elice/10-7f20edf1143e4f55b596f6dda0acdabf"><img src= "../asset/img/elice-logo.png"></a></li>  
+					</ul>
+				</div>      
+			</div>
+		</footer>
+	</body>
 </html>
