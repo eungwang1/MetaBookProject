@@ -37,7 +37,7 @@ figcaption {
 
 /* 링크 초기화 */
 a {
-    /* color: #222; */
+    color: #000;
     text-decoration: none;
 }
 
@@ -121,17 +121,23 @@ video {
 /* footer css */
 .site-footer {
     background-color: #2f3036;
-    padding: 45px 0 20px;
+    padding: 0px 0px 20px;
     font-size: 15px;
     line-height: 24px;
     color: #737373;
+    /* position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%; */
 }
 
 .site-footer .footer-container {
-    width: 100%;
+    /* width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: "text icon";
+    grid-template-areas: "text icon"; */
+    display: flex;
+    justify-content: space-between;
 }
 .site-footer .footer-text {
     grid-area: text;
@@ -148,9 +154,9 @@ video {
 }
 
 .site-footer .social-icons {
-    text-align: right;
+    /* text-align: right;
     width: 100%;
-    padding-right: 100px;
+    padding-right: 100px; */
 }
 .site-footer .social-icons a {
     width: 40px;
@@ -162,18 +168,21 @@ video {
     background-color: #33353d;
 }
 .copyright-text {
+    padding-top: 20px;
     padding-left: 30px;
 }
 
 .social-icons {
+    padding-right: 60px;
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
     display: block;
-    width: 300px;
+    /* width: 300px; */
 }
 .social-icons li {
     display: inline-block;
+    padding-top: 10px;
 }
 
 .social-icons a {

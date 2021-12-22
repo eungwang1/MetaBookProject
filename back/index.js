@@ -43,14 +43,14 @@ const _storage = multer.diskStorage({
 
 const upload = multer({ storage: _storage });
 
-app.use("/images", express.static(path.join(__dirname, "/uploads")));
+app.use("/api/images", express.static(path.join(__dirname, "/uploads")));
 
 const user_router = require("./routes/user_router");
 const post_router = require("./routes/post_router");
 
 //라우터를 모으자!
-app.use("/user", user_router);
-app.use("/post", post_router);
+app.use("/api/user", user_router);
+app.use("/api/post", post_router);
 
 app.post("/upload", upload.single("userfile"), function (req, res) {
     try {

@@ -1,31 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>META BOOK</title>
-
+        <link rel="stylesheet" href="./asset/css/index.css" />
         <link rel="stylesheet" href="./asset/css/default.css" />
+        <link rel="stylesheet" href="./asset/css/modal.css" />
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
 
     <body>
+        <div id="modal-select"></div>
+        <!-- <div id=wrapper> -->
         <header id="header">
             <h1>
-                <a href="index.html">
-                    <!-- <img class="logo" src="./asset/img/logo_horizon.png" alt="META BOOK"/> -->
-                </a>
+                <a href="index.html"></a>
             </h1>
             <nav class="default-menu">
                 <ul>
-                    <li><a href="">로그인</a></li>
+                    <li><a href="./views/login.html">로그인</a></li>
                 </ul>
             </nav>
-        
         </header>
 
         <main id="main" role="main">
-            <article class="top"></article>
+            <section class="top_board">
+                <h2>인기 메타버스</h2>
+                <article class="top">
+                    <a value="1" href="#">
+                        <figure id="posting">
+                            <img src="./asset/img/topPosts_example/topPosts_example1.png" alt="top_posts1" />
+                            <figcaption>
+                                <span class="title">topPosts title1</span>
+                                <span class="writer">topPosts writer1</span>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    <a href="#">
+                        <figure>
+                            <img src="./asset/img/topPosts_example/topPosts_example2.png" alt="top_posts2" />
+                            <figcaption>
+                                <span class="title">topPosts title2</span>
+                                <span class="writer">topPosts writer2</span>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    <a href="#">
+                        <figure>
+                            <img src="./asset/img/topPosts_example/topPosts_example3.png" alt="top_posts3" />
+                            <figcaption>
+                                <span class="title">topPosts title3</span>
+                                <span class="writer">topPosts writer3</span>
+                            </figcaption>
+                        </figure>
+                    </a>
+                </article>
+            </section>
+
+            <section class="board_list">
+                <div class="board_title">
+                    <h3>최근 게시물</h3>
+                    <a class="write_btn" href="./views/write.html">글쓰기</a>
+                </div>
+                <article class="board_content">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <figure>
+                                    <img
+                                        src="./asset/img/topPosts_example/topPosts_example3.png"
+                                        alt="top_posts1"
+                                    />
+                                    <figcaption>
+                                        <span class="title">topPosts title1</span>
+                                        <span class="writer">topPosts writer1</span>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <figure>
+                                    <img
+                                        src="./asset/img/topPosts_example/topPosts_example1.png"
+                                        alt="top_posts1"
+                                    />
+                                    <figcaption>
+                                        <span class="title">topPosts title1</span>
+                                        <span class="writer">topPosts writer1</span>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <figure>
+                                    <img
+                                        src="./asset/img/topPosts_example/topPosts_example1.png"
+                                        alt="top_posts1"
+                                    />
+                                    <figcaption>
+                                        <span class="title">topPosts title1</span>
+                                        <span class="writer">topPosts writer1</span>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <figure>
+                                    <img
+                                        src="./asset/img/topPosts_example/topPosts_example1.png"
+                                        alt="top_posts1"
+                                    />
+                                    <figcaption>
+                                        <span class="title">topPosts title1</span>
+                                        <span class="writer">topPosts writer1</span>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <figure>
+                                    <img
+                                        src="./asset/img/topPosts_example/topPosts_example1.png"
+                                        alt="top_posts1"
+                                    />
+                                    <figcaption>
+                                        <span class="title">topPosts title1</span>
+                                        <span class="writer">topPosts writer1</span>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <figure>
+                                    <img
+                                        src="./asset/img/topPosts_example/topPosts_example1.png"
+                                        alt="top_posts1"
+                                    />
+                                    <figcaption>
+                                        <span class="title">topPosts title1</span>
+                                        <span class="writer">topPosts writer1</span>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                    </ul>
+                </article>
+
+                <div class="pagenate"></div>
+            </section>
         </main>
+
+        <footer class="site-footer">
+            <div class="footer-container">
+                <div class="footer-text">
+                    <p class="copyright-text">
+                        Copyright &copy; 2021 All Rights Reserved by
+                        <a target="_blank" href="https://kdt-gitlab.elice.io/sw-001-project/team10"
+                            >EliceTeam10</a
+                        >
+                    </p>
+                </div>
+                <div class="footer-icon">
+                    <ul class="social-icons">
+                        <li>
+                            <a
+                                target="_blank"
+                                href="https://kdt-gitlab.elice.io/sw-001-project/team10/project-template"
+                            >
+                                <img src="./asset/img/gitlab-logo.png" />
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                target="_blank"
+                                href="https://www.notion.so/elice/10-7f20edf1143e4f55b596f6dda0acdabf"
+                            >
+                                <img src="./asset/img/elice-logo.png" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="./js/modal.js"></script>
     </body>
 </html>
