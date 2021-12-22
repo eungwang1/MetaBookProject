@@ -52,7 +52,7 @@ const post_router = require("./routes/post_router");
 app.use("/api/user", user_router);
 app.use("/api/post", post_router);
 
-app.post("/upload", upload.single("userfile"), function (req, res) {
+app.post("/api/upload", upload.single("userfile"), function (req, res) {
     try {
         res.json({ ok: true, thumbnailUrl: req.file.filename });
     } catch (err) {
