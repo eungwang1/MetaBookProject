@@ -25,11 +25,11 @@ const postSchema = new mongoose.Schema(
         },
         likes: {
             type: Array,
+            default: [],
             // require: true,
         },
         comments: {
-            type: String,
-            require: true,
+            type: Array,
         },
         tags: {
             type: Array,

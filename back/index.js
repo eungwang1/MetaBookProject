@@ -7,6 +7,7 @@ const passport = require("passport");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+const cors = require("cors");
 
 // middlewares
 const loginRequired = require("./middlewares/login-required");
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors());
 
 app.use(
     session({
