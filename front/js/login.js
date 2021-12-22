@@ -1,7 +1,7 @@
 // signin
 const signin_email = document.forms["signin"].querySelector('[name="email"]');
 const signin_password = document.forms["signin"].querySelector('[name = "password"]');
-
+const serverUrl = "http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com";
 // signup
 const signup_email = document.forms["signup"].querySelector('[name="email"]');
 const signup_email_check = document.forms["signup"].querySelector("#error-email-check");
@@ -96,13 +96,16 @@ document.getElementById("user-form").addEventListener("submit", async (e) => {
     const password = signin_password.value;
     if (SignInCheck() === true) {
         try {
-            await axios.post("/auth", { email, password });
+            await axios.post("/api/user/login", {
+                email,
+                password,
+            });
             swal({
                 title: "로그인 성공",
                 text: "Welcome to the Metabook",
                 icon: "success",
             });
-            location.href = "/posts";
+            location.href = "/";
         } catch (err) {
             swal({
                 title: "로그인 실패",
@@ -119,19 +122,23 @@ document.getElementById("signup-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = signup_email.value;
     const password = signup_password.value;
-    const nickname = signup_nickname.value;
+    const name = signup_nickname.value;
     if (SignUpCheck() === true) {
         const email = document.forms["signup"].querySelector('[name="email"]').value;
         const password = document.forms["signup"].querySelector('[name = "password"]').value;
-        const nickname = document.forms["signup"].querySelector('[name="nickname"]').value;
+        const name = document.forms["signup"].querySelector('[name="nickname"]').value;
         try {
-            await axios.post("/join", { email, password, nickname });
+            await axios.post("/api/user/join", {
+                email,
+                name,
+                password,
+            });
             swal({
                 title: "회원가입 성공",
                 text: "Welcome to the Metabook",
                 icon: "success",
             });
-            location.href = "/login";
+            location.href = "/login.html";
         } catch (err) {
             swal({
                 title: "회원가입 실패",
