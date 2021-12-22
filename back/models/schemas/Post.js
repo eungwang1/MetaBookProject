@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
+const { Schema } = require("mongoose");
 
-const postSchema = new mongoose.Schema(
+const postSchema = new Schema(
     {
         author: {
-            // User_id
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: "User",
             require: true,
         },
         title: {
