@@ -31,6 +31,17 @@ function passwordToggle(e) {
     }
 }
 
+function Signup_passwordToggle(e) {
+    let x = e.target.previousElementSibling.previousElementSibling;
+    if (x.type === "password") {
+        x.type = "text";
+        e.target.src = "../asset/img/login/eye.png";
+    } else {
+        x.type = "password";
+        e.target.src = "../asset/img/login/eyeslash.png";
+    }
+}
+
 // 로그인 유효성검사
 function SignInCheck() {
     if (!signin_email.value) {
@@ -138,7 +149,7 @@ document.getElementById("signup-form").addEventListener("submit", async (e) => {
                 text: "Welcome to the Metabook",
                 icon: "success",
             });
-            location.href = "views/login.html";
+            location.href = "/login.html";
         } catch (err) {
             swal({
                 title: "회원가입 실패",
@@ -176,5 +187,5 @@ signup_passwordConfirm.addEventListener("input", (e) => {
 });
 
 $togglePass.addEventListener("click", passwordToggle);
-$togglePass_Sign.addEventListener("click", passwordToggle);
-$togglePass_Sign_Check.addEventListener("click", passwordToggle);
+$togglePass_Sign.addEventListener("click", Signup_passwordToggle);
+$togglePass_Sign_Check.addEventListener("click", Signup_passwordToggle);
