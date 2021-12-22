@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
+const Schema = require("mongoose");
 
-const commentSchema = new mongoose.Schema(
+const commentSchema = new Schema.Schema(
     {
         author: {
-            // ref: 'User'
-            type: String,
-            require: true,
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
         },
         content: {
             type: String,
