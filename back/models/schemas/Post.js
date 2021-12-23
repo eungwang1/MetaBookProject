@@ -1,4 +1,5 @@
 const { Schema } = require("mongoose");
+const CommentSchema = require("./Comment");
 
 const postSchema = new Schema(
     {
@@ -28,9 +29,7 @@ const postSchema = new Schema(
             default: [],
             // require: true,
         },
-        comments: {
-            type: Array,
-        },
+        comments: [CommentSchema],
         tags: {
             type: Array,
             // require: true,

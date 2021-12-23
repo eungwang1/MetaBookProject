@@ -1,6 +1,6 @@
 const { Schema } = require("mongoose");
 
-const UserSchema = new Schema(
+const userSchema = new Schema(
     {
         email: {
             type: String,
@@ -36,4 +36,4 @@ const UserSchema = new Schema(
     }
 );
 
-module.exports = UserSchema;
+module.exports = userSchema;
