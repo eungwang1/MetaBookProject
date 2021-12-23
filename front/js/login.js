@@ -1,3 +1,13 @@
+// ---------------import -------------------------
+import { getUserId, generateLogout, preventAccess } from "./util.js";
+
+let userId = null;
+window.addEventListener("DOMContentLoaded", async () => {
+    userId = await getUserId();
+    generateLogout(userId);
+    preventAccess(!userId);
+});
+
 // signin
 const signin_email = document.forms["signin"].querySelector('[name="email"]');
 const signin_password = document.forms["signin"].querySelector(

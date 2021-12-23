@@ -1,3 +1,12 @@
+// ---------------import -------------------------
+import { getUserId, generateLogout, preventAction } from "./util.js";
+
+let userId = null;
+window.addEventListener("DOMContentLoaded", async () => {
+    userId = await getUserId();
+    generateLogout(userId);
+});
+
 const figure = document.querySelectorAll("figure");
 
 function heartToggle() {
@@ -69,7 +78,9 @@ function modalHtml(metaUrl, title, content, thumbnailUrl, author) {
                     <div class="gather_link">
                         <button type="submit" class="write-submit" onclick = "window.open('${metaUrl}')">입장하기</button>
                     </div>
-                    <div class="modal_exit"><button onclick="closeModal()" class="modal_exit_button" type="submit">x</button></div>
+                    <div class="modal_exit">
+                        <button onclick="closeModal()" class="modal_exit_button" type="submit">x</button>
+                    </div>
                 </div>
             </header>
 
@@ -102,17 +113,19 @@ function modalHtml(metaUrl, title, content, thumbnailUrl, author) {
                 </div>
             <div class="comment_field" id="add-comment-post37">
                 <input type="text" placeholder="comment" class="comment_text" />
-                <div id="commentUpload" class="upload_btn m_text" data-name="comment">댓글등록</div>
+                <button id="commentUpload" class="upload_btn m_text" data-name="comment">댓글등록</button>
             </div>
         </article>
         </div>`;
 }
 
 function modal(metaUrl, title, content, thumbnailUrl, author) {
-    $("body").append(modalHtml(metaUrl, title, content, thumbnailUrl, author));
+    $("#modal-select").append(
+        modalHtml(metaUrl, title, content, thumbnailUrl, author)
+    );
     heartToggle();
     commentPost("은광");
-    deleteComment();
+    // deleteComment();
 }
 function closeModal() {
     document.querySelector(".modal").remove();
@@ -120,10 +133,17 @@ function closeModal() {
 
 figure.forEach((el) =>
     el.addEventListener("click", async (e) => {
+        preventAction(false);
         const objectId = e.target.parentNode.dataset.objectid;
         res = await axios.get(`/${objectId}`);
         console.log(res.data.post);
-        const { author, _id, content, title, thumbnailUrl, metaUrl, likes } = res.data.post;
+        const { author, _id, content, title, thumbnailUrl, metaUrl, likes } =
+            res.data.post;
         modal(metaUrl, title, content, thumbnailUrl, author);
     })
 );
+
+const closeBtn = document.querySelector(".modal_exit_button");
+closeBtn.addEventListener("click", () => {
+    closeModal();
+});

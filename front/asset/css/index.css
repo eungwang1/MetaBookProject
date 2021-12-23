@@ -23,7 +23,7 @@
     position: relative;
 }
 
-.top_board .top a {
+.top_board .top div {
     width: 17rem;
     height: 17rem;
     position: relative;

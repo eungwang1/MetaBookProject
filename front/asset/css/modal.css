@@ -38,7 +38,7 @@ body {
     margin: 150px auto;
     max-width: 614px;
     border: 1px solid rgba(0, 0, 0, 0.09);
-    border-radius: 25px;
+    border-radius: 15px;
     /* background: #283964e6; */
     background: #36393f;
     color: #fff;
@@ -187,14 +187,30 @@ body {
 }
 
 .contents .comment_field .upload_btn {
-    /* color: #3897f0; */
+    color: #fff;
+    background-color: #89ecbbab;
     position: absolute;
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    cursor: pointer;
-    /*pointer-events: none;*/
-    opacity: 0.6;
+    /* cursor: pointer; */
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    /* pointer-events: none; */
+    /* opacity: 0.6; */
+}
+
+.contents .comment_field .upload_btn:hover {
+    background-color: #5df0a6dc;
+}
+
+.contents .comment_field .upload_btn.not_allow {
+    cursor: not-allowed;
+}
+
+.contents .comment_field .upload_btn.not_allow:hover {
+    background-color: #89ecbbab;
 }
 
 .sprite_heart_icon_outline {
