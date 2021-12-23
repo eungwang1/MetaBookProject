@@ -27,12 +27,15 @@ const postSchema = new Schema(
         likes: {
             type: Array,
             default: [],
-            // require: true,
+        },
+        likeCount: {
+            type: Number,
+            default: 0,
         },
         comments: [CommentSchema],
         tags: {
             type: Array,
-            // require: true,
+            default: [],
         },
     },
     { timestamps: true }
