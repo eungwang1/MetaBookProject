@@ -27,24 +27,43 @@ function heartToggle() {
     });
 }
 
-function commentHtml(author) {
+function commentHtml(data, commentId) {
     const comment_text = document.querySelector(".comment_text");
     const comment = comment_text.value;
-    console.log(comment);
-    return `<div class="comment-detail">
-                    <div class="comment-nickname">${author}</div>
-                    <div class="comment-text">${comment}</div>
-                    <button data-name="comment_delete" class="comment_delete">x</button>
-                </div>`;
+    return `
+    <div class="comment-detail">
+        <div class="comment-nickname">${data.author.name}</div>
+        <div class="comment-text">${data.content}</div>
+        <button data-name="comment_delete" class="comment_delete" data-id = ${commentId}>x</button>
+        </div>`;
 }
 
-function commentPost(author) {
+function commentPost(author, objectId, commentId) {
     const commentUpload = document.querySelector("#commentUpload");
     const comment_text = document.querySelector(".comment_text");
-    const comment = comment_text.value;
-    commentUpload.addEventListener("click", () => {
+
+    commentUpload.addEventListener("click", async () => {
+        const comment = comment_text.value;
+        const comment_box = document.querySelector(".comment_box");
         if (comment_text.value.length > 1) {
-            $(".comment_box").append(commentHtml("은광"));
+            const CommentData = {
+                content: comment,
+            };
+            await axios.post(
+                `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment/${objectId}`,
+                CommentData
+            );
+
+            const res = await axios.get(
+                `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment/${objectId}`
+            );
+
+            while (comment_box.hasChildNodes()) {
+                comment_box.removeChild(comment_box.firstChild);
+            }
+            res.data.forEach((data) => {
+                $(".comment_box").append(commentHtml(data, commentId));
+            });
         } else {
             swal({
                 title: "다시 입력해주세요.",
@@ -67,12 +86,6 @@ function closeModal() {
         document.querySelector(".modal").remove();
         $("html, body").removeClass("not_scroll");
     });
-}
-
-function deleteComment() {
-    const deleteBtn = document.querySelector(".comment_delete");
-    const comment = deleteBtn.parentNode;
-    console.log(comment);
 }
 
 function modalHtml(metaUrl, title, content, thumbnailUrl, author) {
@@ -130,13 +143,56 @@ function modalHtml(metaUrl, title, content, thumbnailUrl, author) {
         </div>`;
 }
 
-function modal(metaUrl, title, content, thumbnailUrl, author) {
-    $("#modal-select").append(
-        modalHtml(metaUrl, title, content, thumbnailUrl, author)
-    );
+function modal(metaUrl, title, content, thumbnailUrl, author, objectId) {
+    $("#modal-select").append(modalHtml(metaUrl, title, content, thumbnailUrl, author));
     heartToggle();
     closeModal();
-    commentPost("은광");
+    commentPost(author, objectId);
+    console.log(objectId);
+    axios
+        .get(`http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment/${objectId}`)
+        .then((res) => {
+            res.data.forEach((data) => {
+                console.log(objectId);
+                const { _id } = data;
+                const commentId = _id;
+                $(".comment_box").append(commentHtml(data, commentId));
+                const deleteBtn = document.querySelector(".comment_delete");
+                deleteBtn.addEventListener("click", (e) => {
+                    const comment_delete_data = {
+                        postId: objectId,
+                        commentId: commentId,
+                    };
+                    // console.log(comment_delete_data);
+                    axios.delete(
+                        `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment`,
+                        comment_delete_data
+                    );
+                });
+                // deleteBtn.addEventListener("click", (objectId, commentdata) => {
+                //     const comment_delete_data = {
+                //         postId: objectId,
+                //         commentId: commentId,
+                //     };
+                //     console.log(objectId);
+                // axios
+                //     .delete(
+                //         `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment/${objectId}`,
+                //         comment_delete_data
+                //     )
+                //     .then((res2) => {
+                //         const comment_box = document.querySelector(".comment_box");
+                //         while (comment_box.hasChildNodes()) {
+                //             comment_box.removeChild(comment_box.firstChild);
+                //         }
+                //         res.data.forEach((data) => {
+                //             $(".comment_box").append(commentHtml(data, commentId));
+                //         });
+                //     });
+                // });
+            });
+        });
+
     // deleteComment();
 }
 
@@ -146,11 +202,10 @@ figure.forEach((el) =>
         const res = await axios.get(
             `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/page/detail/${objectId}`
         );
-        console.log(res.data.post);
-        const { author, _id, content, title, thumbnailUrl, metaUrl, likes } =
-            res.data.post;
-        modal(metaUrl, title, content, thumbnailUrl, author);
+        const { author, content, title, thumbnailUrl, metaUrl, likes } = res.data.post;
+        modal(metaUrl, title, content, thumbnailUrl, author, objectId);
         $("html, body").addClass("not_scroll");
-        preventAction(userId);
+        preventAction(true);
+        //true : 로그인 false : 로그아웃 !
     })
 );
