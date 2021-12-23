@@ -1,5 +1,5 @@
 // ---------------import-------------------
-import { getUserId, generateLogout, preventAction } from "./util.js";
+import { getUserId, generateLogout, preventAccess } from "./util.js";
 
 // --------------------nodes---------------------------
 const inputFile = document.querySelector("#upload-file");
@@ -16,7 +16,7 @@ let userId = null;
 window.addEventListener("DOMContentLoaded", async () => {
     userId = await getUserId();
     generateLogout(userId);
-    preventAction(userId);
+    preventAccess(userId);
     if (postId) {
         getPostContent(postId);
     }
