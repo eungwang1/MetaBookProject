@@ -11,7 +11,7 @@ router.post("/", async function (req, res) {
         const result = await post.save();
         res.json({ ok: true, message: "생성 완료!" });
     } catch (err) {
-        res.json({ ok: false, message: "생성 실패" });
+        res.json({ ok: false, message: "생성 실패", err });
     }
 });
 
@@ -26,7 +26,7 @@ router.get("/:title", async function (req, res) {
             });
         res.json({ ok: true, post });
     } catch (err) {
-        res.json({ ok: false, message: "검색 실패" });
+        res.json({ ok: false, message: "검색 실패", err });
     }
 });
 
@@ -49,8 +49,7 @@ router.put("/:postId", async function (req, res) {
         );
         res.json({ ok: true, message: "수정 완료" });
     } catch (err) {
-        console.log(err);
-        res.json({ ok: false, message: "수정 실패3" });
+        res.json({ ok: false, message: "수정 실패3", err });
     }
 });
 
@@ -60,7 +59,7 @@ router.delete("/:postId", async function (req, res) {
         const post = await Post.deleteOne({ _id: req.params.postId });
         res.json({ ok: true, message: "삭제 완료" });
     } catch (err) {
-        res.json({ ok: false, message: "삭제 실패" });
+        res.json({ ok: false, message: "삭제 실패", err });
     }
 });
 
@@ -69,11 +68,10 @@ router.put("/:postId/like", async function (req, res) {
     try {
         const post = await Post.findById({ _id: req.params.postId });
         const userId = req.user.id;
-        const lcnt = post.likes.length;
         if (!post.likes.includes(userId)) {
             await post.updateOne({
                 $push: { likes: userId },
-                likeCount: lcnt + 1,
+                likeCount: post.likeCount + 1,
             });
             res.status(200).json({
                 ok: true,
@@ -82,7 +80,7 @@ router.put("/:postId/like", async function (req, res) {
         } else {
             await post.updateOne({
                 $pull: { likes: userId },
-                likeCount: lcnt - 1,
+                likeCount: post.likeCount - 1,
             });
             res.status(200).json({
                 ok: true,
@@ -90,7 +88,7 @@ router.put("/:postId/like", async function (req, res) {
             });
         }
     } catch (err) {
-        res.status(500).json({ ok: false, message: "좋아요 실패" });
+        res.status(500).json({ ok: false, message: "좋아요 실패", err });
     }
 });
 
