@@ -54,8 +54,7 @@ const page_router = require("./routes/page_router");
 
 //라우터를 모으자!
 app.use("/api/user", user_router);
-//loginRequired
-app.use("/api/post", post_router);
+app.use("/api/post", loginRequired, post_router);
 app.use("/api/page", page_router);
 app.use("/api/comment", loginRequired, com_router);
 

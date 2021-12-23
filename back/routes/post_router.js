@@ -5,7 +5,7 @@ const multer = require("multer");
 
 //create
 router.post("/", async function (req, res) {
-    // req.body.author = req.user.id;
+    req.body.author = req.user.id;
     const post = new Post(req.body);
     try {
         const result = await post.save();
