@@ -32,7 +32,7 @@ router.get("/:num", async function (req, res) {
             top3Post,
         });
     } catch (err) {
-        res.json({ ok: false, message: "페이지 불러오기 실패" });
+        res.json({ ok: false, message: "페이지 불러오기 실패", err });
     }
 });
 
@@ -52,7 +52,7 @@ router.get("/detail/:postId", async (req, res) => {
             });
         res.json({ ok: true, post });
     } catch (err) {
-        res.json({ ok: false, message: "실패" });
+        res.json({ ok: false, message: "실패", err });
     }
 });
 
