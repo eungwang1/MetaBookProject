@@ -7,15 +7,16 @@ const multer = require("multer");
 router.get("/:num", async function (req, res) {
     const page = Number(req.params.num || 1);
     // 기본값 1
-    const perPage = 16;
+    const perPage = 1;
     try {
-        const [total, posts] = await Promise.all([
+        const [total, posts, top3Post] = await Promise.all([
             Post.countDocuments({}),
             Post.find({})
                 .sort({ createdAt: -1 })
                 .skip(perPage * (page - 1))
                 .limit(perPage)
                 .populate("author", "name"),
+            Post.find({}).sort({ likeCount: -1 }).limit(3),
         ]);
         // total, posts 를 Promise.all 을 사용해 동시에 호출하기
 
@@ -28,6 +29,7 @@ router.get("/:num", async function (req, res) {
             page,
             perPage,
             totalPage,
+            top3Post,
         });
     } catch (err) {
         res.json({ ok: false, message: "페이지 불러오기 실패" });

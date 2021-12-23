@@ -57,7 +57,7 @@ router.put("/:postId", async function (req, res) {
 //delete
 router.delete("/:postId", async function (req, res) {
     try {
-        const post = await Post.deleteOne({ _id: req.params.id });
+        const post = await Post.deleteOne({ _id: req.params.postId });
         res.json({ ok: true, message: "삭제 완료" });
     } catch (err) {
         res.json({ ok: false, message: "삭제 실패" });
@@ -65,22 +65,32 @@ router.delete("/:postId", async function (req, res) {
 });
 
 //like
-router.put("/:id/like", async (req, res) => {
-    console.log("1");
+router.put("/:postId/like", async function (req, res) {
     try {
-        console.log("2");
-        const post = await Post.findById(req.params.id);
-        console.log(post);
-
-        if (!post.likes.includes(req.body.userId)) {
-            await post.uadateOne({ $push: { likes: req.body.userId } });
-            res.status(200).json("The post has been liked");
+        const post = await Post.findById({ _id: req.params.postId });
+        const userId = req.user.id;
+        const lcnt = post.likes.length;
+        if (!post.likes.includes(userId)) {
+            await post.updateOne({
+                $push: { likes: userId },
+                likeCount: lcnt + 1,
+            });
+            res.status(200).json({
+                ok: true,
+                message: "The post has been liked",
+            });
         } else {
-            await post.updateOne({ $pull: { likes: req.body.userId } });
-            res.status(200).json("The post has been disliked");
+            await post.updateOne({
+                $pull: { likes: userId },
+                likeCount: lcnt - 1,
+            });
+            res.status(200).json({
+                ok: true,
+                message: "The post has been disliked",
+            });
         }
     } catch (err) {
-        res.status(500).json(err);
+        res.status(500).json({ ok: false, message: "좋아요 실패" });
     }
 });
 
