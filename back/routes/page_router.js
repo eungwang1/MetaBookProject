@@ -38,7 +38,10 @@ router.get("/:num", async function (req, res) {
 router.get("/detail/:postId", async (req, res) => {
     const postId = req.params.postId;
     try {
-        const post = await Post.findOne({ _id: postId });
+        const post = await Post.findOne({ _id: postId }).populate(
+            "author",
+            "name"
+        );
 
         if (!post)
             return res.status(404).json({
