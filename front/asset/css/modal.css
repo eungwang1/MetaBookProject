@@ -13,6 +13,7 @@
 
 body {
     background-color: #36393f;
+    overflow-x: hidden;
 }
 
 #main_container {
@@ -299,4 +300,8 @@ body {
 .modal .dimmed {
     position: absolute;
     background: rgba(11, 19, 30, 0.37);
+}
+
+.not_scroll {
+    overflow: hidden;
 }

@@ -10,28 +10,16 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 // signin
 const signin_email = document.forms["signin"].querySelector('[name="email"]');
-const signin_password = document.forms["signin"].querySelector(
-    '[name = "password"]'
-);
-const serverUrl =
-    "http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com";
+const signin_password = document.forms["signin"].querySelector('[name = "password"]');
+const serverUrl = "http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com";
 // signup
 const signup_email = document.forms["signup"].querySelector('[name="email"]');
-const signup_email_check =
-    document.forms["signup"].querySelector("#error-email-check");
-const signup_password = document.forms["signup"].querySelector(
-    '[name = "password"]'
-);
-const signup_password_error =
-    document.forms["signup"].querySelector("#error-password");
-const signup_password_check = document.forms["signup"].querySelector(
-    "#error-password-check"
-);
-const signup_nickname =
-    document.forms["signup"].querySelector('[name="nickname"]');
-const signup_passwordConfirm = document.querySelector(
-    '[name="password_confirm"]'
-);
+const signup_email_check = document.forms["signup"].querySelector("#error-email-check");
+const signup_password = document.forms["signup"].querySelector('[name = "password"]');
+const signup_password_error = document.forms["signup"].querySelector("#error-password");
+const signup_password_check = document.forms["signup"].querySelector("#error-password-check");
+const signup_nickname = document.forms["signup"].querySelector('[name="nickname"]');
+const signup_passwordConfirm = document.querySelector('[name="password_confirm"]');
 
 // toglepassword
 const $togglePass = document.querySelector("#togglePass");
@@ -157,13 +145,9 @@ document.getElementById("signup-form").addEventListener("submit", async (e) => {
     const password = signup_password.value;
     const name = signup_nickname.value;
     if (SignUpCheck() === true) {
-        const email =
-            document.forms["signup"].querySelector('[name="email"]').value;
-        const password = document.forms["signup"].querySelector(
-            '[name = "password"]'
-        ).value;
-        const name =
-            document.forms["signup"].querySelector('[name="nickname"]').value;
+        const email = document.forms["signup"].querySelector('[name="email"]').value;
+        const password = document.forms["signup"].querySelector('[name = "password"]').value;
+        const name = document.forms["signup"].querySelector('[name="nickname"]').value;
         try {
             await axios.post("/api/user/join", {
                 email,
@@ -198,8 +182,7 @@ signup_email.addEventListener("input", (e) => {
 signup_password.addEventListener("input", (e) => {
     signup_password_error.innerHTML = "";
     if (signup_password.value.length < 8) {
-        signup_password_error.innerHTML =
-            "최소 8자리 이상의 비밀번호를 설정해 주세요";
+        signup_password_error.innerHTML = "최소 8자리 이상의 비밀번호를 설정해 주세요";
         signup_password_error.style.color = "red";
     }
 });
@@ -216,9 +199,3 @@ signup_passwordConfirm.addEventListener("input", (e) => {
 $togglePass.addEventListener("click", passwordToggle);
 $togglePass_Sign.addEventListener("click", Signup_passwordToggle);
 $togglePass_Sign_Check.addEventListener("click", Signup_passwordToggle);
-
-axios.get("http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/user").then((res) => {
-    console.log(res.user);
-});
-
-test();
