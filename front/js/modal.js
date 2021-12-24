@@ -64,57 +64,57 @@ function commentHtml(data, commentId) {
 // 모달 HTML
 function modalHtml(metaUrl, title, content, thumbnailUrl, author) {
     return `<div class="modal">
-                <div class="dimmed">
+                <div class="dimmed"></div>
 
-                    <article class="contents">
-                        <header class="top">
-                            <div class="user_container">
-                                <div class="profile_img">
-                                    <img src="./asset/img/thumb.jpeg" alt="프로필이미지" />
-                                </div>
-                                <div class="user_name">
-                                    <div class="nick_name m_text">${author.name}</div>
-                                </div>
-                                <div class="gather_link">
-                                    <button type="submit" class="write-submit" onclick = "window.open('${metaUrl}')">입장하기</button>
-                                </div>
-                                <div class="modal_exit">
-                                    <div class="modal_exit_button" >x</div>
-                                </div>
+                <article class="contents">
+                    <header class="top">
+                        <div class="user_container">
+                            <div class="profile_img">
+                                <img src="./asset/img/thumb.jpeg" alt="프로필이미지" />
                             </div>
-                        </header>
-
-                        <div class="img_section">
-                            <div class="trans_inner">
-                                <div><img src="http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/images/${thumbnailUrl}"; /></div>
+                            <div class="user_name">
+                                <div class="nick_name m_text">${author.name}</div>
+                            </div>
+                            <div class="gather_link">
+                                <button type="submit" class="write-submit" onclick = "window.open('${metaUrl}')">입장하기</button>
+                            </div>
+                            <div class="modal_exit">
+                                <div class="modal_exit_button" >x</div>
                             </div>
                         </div>
+                    </header>
 
-                        <div class = 'scroll_container' id= 'style-1'>  
-                            <div class="bottom_icons">
-                                <h3 class="maintitle">${title}</h3>
-                                <div class="left_icons">
-                                    <div class="heart_btn">
-                                        <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
-                                    </div>
-                                    
-                                    <div class="likes m_text">
-                                        <span id="like-count-39">999</span>
-                                    </div>
+                    <div class="img_section">
+                        <div class="trans_inner">
+                            <div><img src="http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/images/${thumbnailUrl}"; /></div>
+                        </div>
+                    </div>
+
+                    <div class = 'scroll_container' id= 'style-1'>  
+                        <div class="bottom_icons">
+                            <h3 class="maintitle">${title}</h3>
+                            <div class="left_icons">
+                                <div class="heart_btn">
+                                    <div class="sprite_heart_icon_outline" name="39" data-name="heartbeat"></div>
+                                </div>
+                                
+                                <div class="likes m_text">
+                                    <span id="like-count-39">999</span>
                                 </div>
                             </div>
-                            <div class="maintext">
-                                ${content}
-                            </div>
-                            <div class = "comment_box">
-                            </div>
                         </div>
-                        <div class="comment_field" id="add-comment-post37">
-                            <input type="text" placeholder="comment" class="comment_text" />
-                            <button id="commentUpload" class="upload_btn m_text" data-name="comment">댓글등록</button>
+                        <div class="maintext">
+                            ${content}
                         </div>
-                    </article>
-                </div>
+                        <div class = "comment_box">
+                        </div>
+                    </div>
+                    <div class="comment_field" id="add-comment-post37">
+                        <input type="text" placeholder="comment" class="comment_text" />
+                        <button id="commentUpload" class="upload_btn m_text" data-name="comment">댓글등록</button>
+                    </div>
+                </article>
+                
             </div>`;
 }
 // 댓글을 재로딩 해주는 함수 - 기존 댓글을 다지우고, 전부 새로 불러온다.
