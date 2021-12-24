@@ -9,13 +9,15 @@ async function render(page){
     $(".top").empty();
     posts.data.top3Post.forEach(top_post=>{
         $(".top").append(
-            `<figure data-objectid=${top_post._id}>
-                <img src= /api/images/${top_post.thumbnailUrl}>
-                    <figcaption>
-                        <span class="title">${top_post.title}</span>
-                        <span class="writer">${top_post.author.name}</span>
-                    </figcaption>
-            </figure>`
+            `<div>
+                <figure data-objectid=${top_post._id}>
+                    <img src= /api/images/${top_post.thumbnailUrl}>
+                        <figcaption>
+                            <span class="title">${top_post.title}</span>
+                            <span class="writer">${top_post.author.name}</span>
+                        </figcaption>
+                </figure>
+            </div>`
         );
     })
     //일반 게시물 그리기
@@ -23,15 +25,13 @@ async function render(page){
     posts.data.posts.forEach(post => {        
         $(".board_content ul").append(
             `<li>
-                <a href=${post.metaUrl}>
-                    <figure data-objectid=${post._id}>
-                        <img src= /api/images/${post.thumbnailUrl}>
-                        <figcaption>
-                            <span class="title">${post.title}</span>
-                            <span class="writer">${post.author.name}</span>
-                        </figcaption>
-                    </figure>
-                </a>
+                <figure data-objectid=${post._id}>
+                    <img src= /api/images/${post.thumbnailUrl}>
+                    <figcaption>
+                        <span class="title">${post.title}</span>
+                        <span class="writer">${post.author.name}</span>
+                    </figcaption>
+                </figure>
             </li>`
         );
     }); 
