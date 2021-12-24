@@ -118,7 +118,7 @@ function modalHtml(metaUrl, title, content, thumbnailUrl, author, likeCount) {
                             
                             <div class="user_name">
                                 <div class="nick_name">${author.name}</div>
-                                <div id='arrow-box'></div>
+                                <button id='arrow-box'></button>
                             </div>
                             <div class="gather_link">
                                 <button class="write-submit" onclick = "window.open('${metaUrl}')">입장하기</button>
@@ -323,7 +323,7 @@ function commentPost(author, objectId, commentId) {
 }
 
 function addAmendBtn(user, author, objectId) {
-    if (author !== user) return;
+    // if (author !== user) return;
     const target = document.querySelector(".user_name");
     const arrow = document.querySelector("#arrow-box");
     const extra = document.createElement("div");
@@ -339,5 +339,8 @@ function addAmendBtn(user, author, objectId) {
     arrow.appendChild(extra);
     arrow.addEventListener("click", () => {
         arrow.classList.toggle("toggle");
+    });
+    arrow.addEventListener("blur", () => {
+        arrow.classList.remove("toggle");
     });
 }
