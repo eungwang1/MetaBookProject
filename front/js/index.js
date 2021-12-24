@@ -46,15 +46,22 @@ export function paginate(first, last, prev, next, totalPage, currPage) {
     if (first > 5) $(".pages").append(`<li class="prev">&lt;</li>`);
 
     //마지막 페이지 처리
-    const checked_first = last === totalPage && last - currPage < 4 ? Math.floor(last / 5) * 5 + 1 : first;
+    const checked_first =
+        last === totalPage && last - currPage < 4
+            ? Math.floor(last / 5) * 5 + 1
+            : first;
 
     for (let j = checked_first; j <= last; j++) {
         //page가 현재 페이지이면 파란색으로, 아니면 검정색으로 변경
-        if (j === currPage) $(".pages").append(`<li><a href="#" style='color:blue'>${j}</a></li>`);
-        else $(".pages").append(`<li><a href="#" style='color:black'>${j}</a></li>`);
+        if (j === currPage)
+            $(".pages").append(
+                `<li class='selected'><button>${j}</button></li>`
+            );
+        else $(".pages").append(`<li><button>${j}</button></li>`);
     }
 
-    if (next > 5 && next <= totalPage) $(".pages").append(`<li class="next"> &gt; </a></li>`);
+    if (next > 5 && next <= totalPage)
+        $(".pages").append(`<li class="next"> &gt; </a></li>`);
 
     $(".pages li button").click(function (e) {
         e.preventDefault();
@@ -88,7 +95,8 @@ export async function paging(currPage) {
     const pageCount = 5; //표시할 페이지 수
     const pageGroup = Math.ceil(currPage / pageCount);
 
-    let last = pageGroup * pageCount > totalPage ? totalPage : pageGroup * pageCount; //화면에 보여질 마지막 페이지 번호
+    let last =
+        pageGroup * pageCount > totalPage ? totalPage : pageGroup * pageCount; //화면에 보여질 마지막 페이지 번호
     let first = last - (pageCount - 1) <= 0 ? 1 : last - (pageCount - 1); //화면에 보여질 첫번째 페이지 번호
     const next = last + 1;
     const prev = first - 1;
