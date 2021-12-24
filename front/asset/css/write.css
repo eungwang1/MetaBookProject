@@ -136,3 +136,43 @@
 #write-main #write-form .form-right #write-submit:hover {
     background-color: #217fa7;
 }
+
+@media (max-width: 1024px) {
+    #write-main #write-form form {
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    #write-main #write-form .form-left {
+        height: 50%;
+    }
+
+    #write-main #write-form .form-right {
+        gap: 20px;
+        width: 65%;
+        height: 50%;
+        flex-direction: column-reverse;
+        /* justify-content: space-evenly; */
+    }
+
+    #write-main #write-form .form-right .filebox {
+        /* flex: 0.8; */
+        width: 60%;
+        height: 100%;
+    }
+
+    #write-main #write-form .form-right #post_link {
+        /* flex: 1; */
+    }
+}
+
+@media (max-width: 768px) {
+    #write-main #write-form .form-left {
+        width: 92%;
+    }
+
+    #write-main #write-form .form-right {
+        width: 92%;
+    }
+}

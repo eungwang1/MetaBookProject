@@ -212,3 +212,17 @@ video {
     margin-right: 8px;
     border-radius: 100%;
 }
+
+@media (max-width: 768px) {
+    #header {
+        display: flex;
+        padding: 0 0.5rem;
+        justify-content: space-between;
+        background-color: #2f3036;
+    }
+
+    #header h1 a {
+        width: 10rem;
+        height: 2rem;
+    }
+}

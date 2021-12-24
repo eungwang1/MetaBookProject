@@ -5,7 +5,7 @@ import { render, paginate, paging } from "./index.js";
 let userId = null;
 
 window.addEventListener("DOMContentLoaded", async () => {
-    // userId = await getUserId();
+    userId = await getUserId();
     generateLogout(userId);
     await render(1);
     await paging(1);
@@ -17,10 +17,19 @@ window.addEventListener("DOMContentLoaded", async () => {
                 `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/page/detail/${objectId}`
             );
 
-            const { author, content, title, thumbnailUrl, metaUrl, likeCount } = res.data.post;
-            modal(metaUrl, title, content, thumbnailUrl, author, objectId, likeCount);
+            const { author, content, title, thumbnailUrl, metaUrl, likeCount } =
+                res.data.post;
+            modal(
+                metaUrl,
+                title,
+                content,
+                thumbnailUrl,
+                author,
+                objectId,
+                likeCount
+            );
             $("html, body").addClass("not_scroll");
-            preventAction(true);
+            preventAction(userId);
             //true : 로그인 false : 로그아웃 !
         })
     );
@@ -78,11 +87,9 @@ function modalHtml(metaUrl, title, content, thumbnailUrl, author, likeCount) {
                 <article class="contents">
                     <header class="top">
                         <div class="user_container">
-                            <div class="profile_img">
-                                <img src="./asset/img/thumb.jpeg" alt="프로필이미지" />
-                            </div>
+                            
                             <div class="user_name">
-                                <div class="nick_name m_text">${author.name}</div>
+                                <div class="nick_name">${author.name}</div>
                             </div>
                             <div class="gather_link">
                                 <button type="submit" class="write-submit" onclick = "window.open('${metaUrl}')">입장하기</button>
@@ -129,7 +136,9 @@ function modalHtml(metaUrl, title, content, thumbnailUrl, author, likeCount) {
 
 function commentRender_supporter(objectId) {
     axios
-        .get(`http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment/${objectId}`)
+        .get(
+            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment/${objectId}`
+        )
         .then((res) => {
             res.data.forEach((data, idx) => {
                 const { _id } = data;
@@ -137,28 +146,33 @@ function commentRender_supporter(objectId) {
                 $(".comment_box").append(commentHtml(data, commentId));
                 // const deleteBtn = document.querySelector(".comment_delete");
                 const comment_box = document.querySelector(".comment_box");
-                const deleteBtn = document.getElementsByClassName("comment_delete")[idx];
-                document.getElementsByClassName("comment_delete")[idx].addEventListener("click", (e) => {
-                    const comment_delete_data = {
-                        postId: objectId,
-                        commentId: commentId,
-                    };
-                    console.log(comment_delete_data);
-                    axios
-                        .delete(
-                            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment`,
+                const deleteBtn =
+                    document.getElementsByClassName("comment_delete")[idx];
+                document
+                    .getElementsByClassName("comment_delete")
+                    [idx].addEventListener("click", (e) => {
+                        const comment_delete_data = {
+                            postId: objectId,
+                            commentId: commentId,
+                        };
+                        console.log(comment_delete_data);
+                        axios
+                            .delete(
+                                `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment`,
 
-                            {
-                                data: comment_delete_data,
-                            }
-                        )
-                        .then((res) => {
-                            while (comment_box.hasChildNodes()) {
-                                comment_box.removeChild(comment_box.firstChild);
-                            }
-                            commentRender_supporter(objectId);
-                        });
-                });
+                                {
+                                    data: comment_delete_data,
+                                }
+                            )
+                            .then((res) => {
+                                while (comment_box.hasChildNodes()) {
+                                    comment_box.removeChild(
+                                        comment_box.firstChild
+                                    );
+                                }
+                                commentRender_supporter(objectId);
+                            });
+                    });
             });
         });
 }
@@ -166,7 +180,9 @@ function commentRender_supporter(objectId) {
 // 댓글삭제 이벤트 생성 함수
 function commentRender(objectId) {
     axios
-        .get(`http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment/${objectId}`)
+        .get(
+            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment/${objectId}`
+        )
         .then((res) => {
             res.data.forEach((data, idx) => {
                 const { _id } = data;
@@ -174,36 +190,51 @@ function commentRender(objectId) {
                 $(".comment_box").append(commentHtml(data, commentId));
                 // const deleteBtn = document.querySelector(".comment_delete");
                 const comment_box = document.querySelector(".comment_box");
-                const deleteBtn = document.getElementsByClassName("comment_delete")[idx];
-                document.getElementsByClassName("comment_delete")[idx].addEventListener("click", (e) => {
-                    const comment_delete_data = {
-                        postId: objectId,
-                        commentId: commentId,
-                    };
-                    console.log(comment_delete_data);
-                    axios
-                        .delete(
-                            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment`,
+                const deleteBtn =
+                    document.getElementsByClassName("comment_delete")[idx];
+                document
+                    .getElementsByClassName("comment_delete")
+                    [idx].addEventListener("click", (e) => {
+                        const comment_delete_data = {
+                            postId: objectId,
+                            commentId: commentId,
+                        };
+                        console.log(comment_delete_data);
+                        axios
+                            .delete(
+                                `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment`,
 
-                            {
-                                data: comment_delete_data,
-                            }
-                        )
-                        .then((res) => {
-                            while (comment_box.hasChildNodes()) {
-                                comment_box.removeChild(comment_box.firstChild);
-                            }
-                            commentRender_supporter(objectId);
-                        });
-                    // 기존 댓글 삭제 및 다시 불러오기.
-                });
+                                {
+                                    data: comment_delete_data,
+                                }
+                            )
+                            .then((res) => {
+                                while (comment_box.hasChildNodes()) {
+                                    comment_box.removeChild(
+                                        comment_box.firstChild
+                                    );
+                                }
+                                commentRender_supporter(objectId);
+                            });
+                        // 기존 댓글 삭제 및 다시 불러오기.
+                    });
             });
         });
 }
 
 // 모달창이 켜졌을 때 실행되는 함수
-function modal(metaUrl, title, content, thumbnailUrl, author, objectId, likeCount) {
-    $("#modal-select").append(modalHtml(metaUrl, title, content, thumbnailUrl, author, likeCount));
+function modal(
+    metaUrl,
+    title,
+    content,
+    thumbnailUrl,
+    author,
+    objectId,
+    likeCount
+) {
+    $("#modal-select").append(
+        modalHtml(metaUrl, title, content, thumbnailUrl, author, likeCount)
+    );
     const comment_box = document.querySelector(".comment_box");
     heartToggle();
     closeModal();

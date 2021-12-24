@@ -9,7 +9,8 @@ export async function getUserId() {
         }
         return null;
     } catch (err) {
-        alert("오류");
+        // alert("유저 불러오기 오류");
+        return null;
     }
 }
 

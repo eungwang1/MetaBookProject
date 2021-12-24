@@ -3,7 +3,7 @@ import { getUserId, generateLogout, preventAccess } from "./util.js";
 
 let userId = null;
 window.addEventListener("DOMContentLoaded", async () => {
-    // userId = getUserId();
+    userId = await getUserId();
     generateLogout(userId);
     preventAccess(userId);
 });

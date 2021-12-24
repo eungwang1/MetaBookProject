@@ -55,18 +55,15 @@ export function paginate(first, last, prev, next, totalPage, currPage) {
         //page가 현재 페이지이면 파란색으로, 아니면 검정색으로 변경
         if (j === currPage)
             $(".pages").append(
-                `<li><a href="#" style='color:blue'>${j}</a></li>`
+                `<li class='selected'><button>${j}</button></li>`
             );
-        else
-            $(".pages").append(
-                `<li><a href="#" style='color:black'>${j}</a></li>`
-            );
+        else $(".pages").append(`<li><button>${j}</button></li>`);
     }
 
     if (next > 5 && next <= totalPage)
         $(".pages").append(`<li class="next"> &gt; </a></li>`);
 
-    $(".pages li a").click(function (e) {
+    $(".pages li button").click(function (e) {
         e.preventDefault();
         var num = Number(e.target.textContent);
         render(num);
@@ -108,7 +105,7 @@ export async function paging(currPage) {
 }
 
 //처음 메인페이지 접속 시 1 페이지 정보 불러오기
-window.addEventListener("DOMContentLoaded", () => {
-    render(1);
-    paging(1);
-});
+// window.addEventListener("DOMContentLoaded", () => {
+//     render(1);
+//     paging(1);
+// });
