@@ -2,7 +2,6 @@
 export async function getUserId() {
     try {
         const res = await axios.get("/api/user");
-        // console.log(res);
         if (res.data.ok) {
             console.log(res);
             return res.data.userId;
