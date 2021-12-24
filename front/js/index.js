@@ -121,7 +121,6 @@ function createClickEvent(userId) {
             const res = await axios.get(
                 `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/page/detail/${objectId}`
             );
-            console.log(res.data);
 
             const {
                 author,
@@ -132,7 +131,6 @@ function createClickEvent(userId) {
                 likeCount,
                 likes,
             } = res.data.post;
-            console.log(likes.includes("61c35dfce7e0d57cfd1a7cb1"));
             modal(
                 metaUrl,
                 title,
@@ -141,7 +139,8 @@ function createClickEvent(userId) {
                 author,
                 objectId,
                 likeCount,
-                likes
+                likes,
+                userId
             );
             $("html, body").addClass("not_scroll");
             //true : 로그인 false : 로그아웃 !
@@ -152,9 +151,7 @@ function createClickEvent(userId) {
 function heartPost(objectId, likes) {
     const heart = document.querySelector(".sprite_heart_icon_outline");
     const like_text = document.getElementById("like-count-39");
-    console.log(like_text.innerText);
     heart.addEventListener("click", async () => {
-        console.log(objectId);
         await axios.put(
             `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/post/${objectId}/like`
         );
@@ -174,7 +171,7 @@ function heartToggle(likes, userId) {
         heart_boolean = false;
     }
 
-    heart.addEventListener("click", () => {
+    heart.addEventListener("click", (userId) => {
         if (userId) return;
         if (heart_boolean == true) {
             // 빨간하트
@@ -288,7 +285,6 @@ function commentRender_supporter(objectId) {
                             postId: objectId,
                             commentId: commentId,
                         };
-                        console.log(comment_delete_data);
                         axios
                             .delete(
                                 `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment`,
@@ -332,7 +328,6 @@ function commentRender(objectId) {
                             postId: objectId,
                             commentId: commentId,
                         };
-                        console.log(comment_delete_data);
                         axios
                             .delete(
                                 `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment`,
@@ -374,7 +369,6 @@ function modal(
     heartToggle(likes, userId);
     closeModal();
     commentPost(author, objectId);
-    console.log(objectId);
     // commentRendering(comment_box, objectId, commentId);
     commentRender(objectId, userId);
     heartPost(objectId, likes);
@@ -399,7 +393,6 @@ function closeModal() {
 function commentPost(author, objectId, commentId) {
     const commentUpload = document.querySelector("#commentUpload");
     const comment_text = document.querySelector(".comment_text");
-    console.log(commentId);
 
     commentUpload.addEventListener("click", async () => {
         const comment = comment_text.value;
