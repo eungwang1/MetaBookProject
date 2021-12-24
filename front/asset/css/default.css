@@ -1,8 +1,25 @@
 html {
     font-size: 20px;
+    overflow-y: scroll;
 }
 body {
     font-size: 1rem;
+    background-color: #36393f;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(133, 133, 133, 1);
+    border-radius: 10px;
+    transition: all 5s ease;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: transparent;
 }
 
 body,
@@ -49,10 +66,6 @@ select,
 button,
 table {
     font: 600 16px/18px "Open Sans", sans-serif;
-}
-
-body {
-    background-color: #36393f;
 }
 
 /* 폰트 스타일 초기화 */
@@ -121,7 +134,7 @@ video {
 /* footer css */
 .site-footer {
     background-color: #2f3036;
-    padding: 0px 0px 20px;
+    padding: 0.5rem 0;
     font-size: 15px;
     line-height: 24px;
     color: #737373;
@@ -138,6 +151,8 @@ video {
     grid-template-areas: "text icon"; */
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 0 1.2rem;
 }
 .site-footer .footer-text {
     grid-area: text;
@@ -158,6 +173,7 @@ video {
     width: 100%;
     padding-right: 100px; */
 }
+
 .site-footer .social-icons a {
     width: 40px;
     height: 40px;
@@ -168,12 +184,12 @@ video {
     background-color: #33353d;
 }
 .copyright-text {
-    padding-top: 20px;
-    padding-left: 30px;
+    /* padding-top: 20px;
+    padding-left: 30px; */
 }
 
 .social-icons {
-    padding-right: 60px;
+    /* padding-right: 60px; */
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;

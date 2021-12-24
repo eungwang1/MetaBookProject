@@ -14,7 +14,7 @@ const postId = window.location.href.split("?")[1];
 //------- 수정 화면 렌더 ----------
 let userId = null;
 window.addEventListener("DOMContentLoaded", async () => {
-    userId = await getUserId();
+    // userId = await getUserId();
     generateLogout(userId);
     preventAccess(userId);
     if (postId) {

@@ -1,5 +1,6 @@
 .top_board {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     padding: 2rem 0;
@@ -9,11 +10,7 @@
 .top_board h2 {
     color: #fff;
     padding: 1rem 0 2rem;
-}
-
-.top_board {
-    display: flex;
-    justify-content: center;
+    font-size: 1.6rem;
 }
 
 .top_board .top {
@@ -79,6 +76,10 @@
     color: #fff;
 }
 
+.board_list .board_title h3 {
+    font-size: 1.5rem;
+}
+
 .board_list .board_title .write_btn {
     color: #fff;
     padding: 0.5rem 1rem;
@@ -105,6 +106,11 @@
     box-sizing: border-box;
     position: relative;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.board_list .board_content ul li:hover {
+    transform: scale(1.05);
 }
 
 .board_list .board_content ul li figure img {
@@ -140,14 +146,134 @@
     color: #fff;
 }
 
-.page_board {
-    margin: 0 auto;
+@media (max-width: 1400px) {
+    .top_board .top {
+        gap: 20px;
+    }
+
+    .top_board .top div {
+        width: 13rem;
+        height: 13rem;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .top_board .top figure img {
+        object-fit: cover;
+        width: 13rem;
+        height: 13rem;
+        border-radius: 10px;
+    }
+
+    .board_list {
+        width: 50rem;
+    }
+
+    .board_list .board_content ul {
+        gap: 1rem;
+    }
+
+    .board_list .board_content ul li {
+        width: 11.75rem;
+        height: 11.75rem;
+    }
+
+    .board_list .board_content ul li figure img {
+        width: 11.75rem;
+        height: 11.75rem;
+    }
 }
 
-.page_board li {
-    float: left;
-    cursor: pointer;
-    /* color: white; */
-    padding-left: 2px;
-    font-size: 24px;
+@media (max-width: 1024px) {
+    .top_board .top {
+    }
+
+    .top_board .top div {
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .top_board .top figure img {
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .board_list {
+        width: 38rem;
+        /* align-items: center; */
+    }
+
+    .board_list .board_title {
+        width: 100%;
+    }
+
+    .board_list .board_content {
+        /* width: 40rem; */
+    }
+    .board_list .board_content ul {
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .board_list .board_content ul li {
+        flex: 1;
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .board_list .board_content ul li figure img {
+        width: 12rem;
+        height: 12rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .top_board .top {
+        gap: 10px;
+    }
+
+    .top_board .top div {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .top_board .top figure img {
+        object-fit: cover;
+        width: 10rem;
+        height: 10rem;
+        border-radius: 10px;
+    }
+
+    .board_list {
+        width: 100%;
+    }
+    .board_list .board_title {
+        padding: 1rem 1rem 3rem 1rem;
+        width: 100%;
+    }
+
+    /* .board_list .board_title a {
+
+    } */
+
+    .board_list .board_content {
+        width: 100%;
+    }
+    .board_list .board_content ul {
+        gap: 1rem;
+        width: 31rem;
+        margin: 0 auto;
+        /* justify-content: center; */
+    }
+
+    .board_list .board_content ul li {
+        flex: none;
+        width: 15rem;
+        height: 15rem;
+    }
+
+    .board_list .board_content ul li figure img {
+        width: 15rem;
+        height: 15rem;
+    }
 }

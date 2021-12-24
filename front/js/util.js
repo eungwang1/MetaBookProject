@@ -31,14 +31,19 @@ export function generateLogout(user) {
 
 //--------------- 리다이렉션 --------------------
 export function preventAccess(user) {
-    if (!user) {
+    const location = window.location.href.split("/");
+    if (!user && location[location.length - 1] === "write.html") {
         alert("로그인이 필요합니다.");
         // 로컬에서는 실행 X
         // 서버에서는 실행 O
         window.location.href = "/index.html";
+    } else if (user && location[location.length - 1] === "login.html") {
+        alert("이미 로그인 하였습니다.");
+        window.location.href = "/index.html";
     }
 }
 
+// --------------- 게시글 이벤트 막기 --------------------
 export function preventAction(user) {
     const commentUpload = document.querySelector("#commentUpload");
     const comment_text = document.querySelector(".comment_text");
