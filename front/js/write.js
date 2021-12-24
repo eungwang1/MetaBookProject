@@ -78,12 +78,13 @@ async function requestUploadPost(file, postId) {
     )
         return alert("올바른 url을 입력해 주세요");
 
-    if (!file) return alert("이미지는 필수 요소입니다.");
+    if (!file && !postId) return alert("이미지는 필수 요소입니다.");
 
     if (file) {
         const data = new FormData();
+        const fileName = file.name.replace(/ /g, "_");
         data.append("userfile", file);
-        data.append("name", file.name);
+        data.append("name", fileName);
         try {
             const res = await axios.post("/api/upload", data);
             textData.thumbnailUrl = res.data.thumbnailUrl;
