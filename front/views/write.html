@@ -8,7 +8,6 @@
 		<link rel="stylesheet" href="../asset/css/default.css" />
 		<link rel="stylesheet" href="../asset/css/write.css">
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-		<!-- <script defer type="module" src="../js/getUserId.js"></script> -->
 		<script defer type="module" src="../js/write.js"></script>
    </head>
 
@@ -29,7 +28,7 @@
 			<article id="write-form">
 				<form>
 					<div class="form-left">
-						<input type="text" id="post_title" placeholder="제목(필수 항목)">
+						<input spellcheck="false" type="text" id="post_title" placeholder="제목(필수 항목)">
 						<textarea type="text" id="post_content" placeholder="설명"></textarea>
 					</div>
 
@@ -43,7 +42,7 @@
 						<input type="file" id="upload-file" accept=".jpg, .png" >
 					</div>
 
-					<input type="text" id="post_link" placeholder="자신의 메타버스 링크를 입력해주세요">
+					<input spellcheck="false" type="text" id="post_link" placeholder="자신의 메타버스 링크를 입력해주세요">
 					<button type="submit" id="write-submit">작성 완료</button>
 
 					</div>

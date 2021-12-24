@@ -49,7 +49,6 @@ inputFile.addEventListener("change", (e) => {
 });
 
 function showFile(file) {
-    // console.log(URL.createObjectURL(file));
     thumb_img.classList.add("show");
     thumb_img.src = URL.createObjectURL(file);
     filename.textContent = file.name;
@@ -78,6 +77,9 @@ async function requestUploadPost(file, postId) {
         (!textData.metaUrl.includes("gather") || !regex.test(textData.metaUrl))
     )
         return alert("올바른 url을 입력해 주세요");
+
+    if (!file) return alert("이미지는 필수 요소입니다.");
+
     if (file) {
         const data = new FormData();
         data.append("userfile", file);

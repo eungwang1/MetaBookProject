@@ -1,3 +1,30 @@
+.modal {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 888;
+    position: fixed;
+}
+
+.modal,
+.modal .dimmed {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.modal .dimmed {
+    position: absolute;
+    background: rgba(11, 19, 30, 0.37);
+}
+
+.not_scroll {
+    overflow: hidden;
+}
+
 .m_text {
     font-size: 14px;
     font-weight: bold;
@@ -13,28 +40,22 @@
 
 body {
     background-color: #36393f;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 .contents {
     display: flex;
     flex-direction: column;
     margin: 150px auto;
-    height: 70vh;
+    min-height: 37rem;
+    /* max-height: 40rem; */
     min-width: 500px;
-    max-width: 700px;
+    max-width: 550px;
     border: 1px solid rgba(0, 0, 0, 0.09);
     border-radius: 15px;
     background: #36393f;
     color: #fff;
-    z-index: 666;
-    overflow-y: scroll;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-}
-
-.contents::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
+    z-index: 999;
 }
 
 .contents .top {
@@ -69,6 +90,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .user_name {
@@ -118,6 +140,7 @@ body {
 .contents .bottom_icons .left_icons {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .contents .bottom_icons .left_icons .heart_btn {
@@ -164,6 +187,10 @@ body {
     border-radius: 10px;
     background-color: #555;
 }
+.contents .nick_name {
+    font-weight: bold;
+    font-size: 1rem;
+}
 
 .contents .maintext {
     min-height: 3rem;
@@ -175,12 +202,13 @@ body {
 
 .contents .comment_field {
     /* min-height: 56px; */
-    height: 5%;
+    height: 8%;
     padding: 0 20px;
     position: relative;
 }
 
 .contents .comment_field input {
+    color: #fff;
     width: 100%;
     height: 100%;
     border: none;
@@ -276,31 +304,29 @@ body {
     cursor: pointer;
 }
 
-.modal {
-    align-items: center;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-    z-index: 777;
-}
-.modal {
-    z-index: 888;
-    position: fixed;
-    display: flex;
-}
-.modal,
-.modal .dimmed {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-.modal .dimmed {
-    position: absolute;
-    background: rgba(11, 19, 30, 0.37);
-}
+@media (max-width: 768px) {
+    .contents {
+        margin: 150px auto;
+        width: 310px;
+        height: 800px;
+        min-width: 0;
+        min-height: 0;
+    }
 
-.not_scroll {
-    overflow: hidden;
+    .modal_exit {
+        padding-left: 10px;
+    }
+
+    .write-submit {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.7rem;
+    }
+
+    .img_section {
+        height: 30%;
+    }
+
+    .scroll_container {
+        height: 54%;
+    }
 }

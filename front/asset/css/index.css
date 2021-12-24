@@ -1,5 +1,14 @@
+.title {
+    font-size: 0.82rem;
+    margin-bottom: 2px;
+}
+
+.writer {
+    font-size: 0.75rem;
+}
 .top_board {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     padding: 2rem 0;
@@ -9,11 +18,7 @@
 .top_board h2 {
     color: #fff;
     padding: 1rem 0 2rem;
-}
-
-.top_board {
-    display: flex;
-    justify-content: center;
+    font-size: 1.6rem;
 }
 
 .top_board .top {
@@ -28,6 +33,11 @@
     height: 17rem;
     position: relative;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.top_board .top div:hover {
+    transform: scale(1.05);
 }
 
 .top_board .top figure img {
@@ -79,6 +89,10 @@
     color: #fff;
 }
 
+.board_list .board_title h3 {
+    font-size: 1.5rem;
+}
+
 .board_list .board_title .write_btn {
     color: #fff;
     padding: 0.5rem 1rem;
@@ -105,6 +119,11 @@
     box-sizing: border-box;
     position: relative;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.board_list .board_content ul li:hover {
+    transform: scale(1.05);
 }
 
 .board_list .board_content ul li figure img {
@@ -141,13 +160,187 @@
 }
 
 .page_board {
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 0;
 }
 
-.page_board li {
-    float: left;
+.page_board .pages {
+    /* width: 12rem; */
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 1rem;
+}
+
+.page_board .pages li {
+    color: #000;
+    width: 1.2rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    text-align: center;
+    background-color: #e4e4e4;
+    border-radius: 3px;
     cursor: pointer;
-    /* color: white; */
-    padding-left: 2px;
-    font-size: 24px;
+}
+
+.page_board .pages li button {
+    width: 100%;
+    height: 100%;
+    color: #000;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.page_board .pages li.selected {
+    color: #fff;
+    background-color: #2db0e6;
+}
+
+.page_board .pages li.selected button {
+    color: #fff;
+}
+
+@media (max-width: 1400px) {
+    .top_board .top {
+        gap: 20px;
+    }
+
+    .top_board .top div {
+        width: 13rem;
+        height: 13rem;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .top_board .top figure img {
+        object-fit: cover;
+        width: 13rem;
+        height: 13rem;
+        border-radius: 10px;
+    }
+
+    .board_list {
+        width: 50rem;
+    }
+
+    .board_list .board_content ul {
+        gap: 1rem;
+    }
+
+    .board_list .board_content ul li {
+        width: 11.75rem;
+        height: 11.75rem;
+    }
+
+    .board_list .board_content ul li figure img {
+        width: 11.75rem;
+        height: 11.75rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .top_board .top {
+    }
+
+    .top_board .top div {
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .top_board .top figure img {
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .board_list {
+        width: 38rem;
+        /* align-items: center; */
+    }
+
+    .board_list .board_title {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .board_list .board_content {
+        /* width: 40rem; */
+    }
+    .board_list .board_content ul {
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .board_list .board_content ul li {
+        flex: 1;
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .board_list .board_content ul li figure img {
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .board_list .board_content ul li figure figcaption {
+        width: 12rem;
+        height: 12rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .top_board .top {
+        gap: 7px;
+        flex-wrap: wrap-reverse;
+    }
+
+    .top_board .top div {
+        width: 16rem;
+        height: 14rem;
+    }
+
+    .top_board .top div:first-child {
+        order: 3;
+    }
+
+    .top_board .top figure img {
+        object-fit: cover;
+        width: 16rem;
+        height: 14rem;
+        border-radius: 10px;
+    }
+
+    .board_list {
+        width: 100%;
+    }
+
+    .board_list .board_title {
+        padding: 0.8rem 0.5rem 1.5rem 0.5rem;
+        width: 100%;
+    }
+
+    .board_list .board_content {
+        width: 100%;
+    }
+    .board_list .board_content ul {
+        gap: 0.5rem;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        /* flex-direction: column; */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .board_list .board_content ul li {
+        flex: none;
+        width: 16rem;
+        height: 14rem;
+    }
+
+    .board_list .board_content ul li figure img,
+    .board_list .board_content ul li figure figcaption {
+        width: 16rem;
+        height: 14rem;
+    }
 }
