@@ -42,17 +42,3 @@ export function preventAccess(user) {
         window.location.href = "/index.html";
     }
 }
-
-// --------------- 게시글 이벤트 막기 --------------------
-export function preventAction(user) {
-    const commentUpload = document.querySelector("#commentUpload");
-    const comment_text = document.querySelector(".comment_text");
-    if (!user) {
-        commentUpload.classList.add("not_allow");
-        commentUpload.disabled = true;
-        commentUpload.style.cursor = "not-allowed";
-        comment_text.disabled = true;
-        comment_text.style.cursor = "not-allowed";
-        comment_text.placeholder = "로그인 후 이용해주세요";
-    }
-}
