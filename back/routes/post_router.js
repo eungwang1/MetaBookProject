@@ -32,14 +32,15 @@ router.get("/:title", async function (req, res) {
 
 //update
 router.put("/:postId", async function (req, res) {
+    const user = req.user.id;
+    const post = await Post.findOne({ _id: req.params.postId }).populate(
+        "author"
+    );
     try {
-        const post = await Post.findOne({ _id: req.params.postId }).populate(
-            "author"
-        );
         if (!post) {
             return res.json({ ok: false, message: "수정 실패1" });
         }
-        if (req.body.userId !== post.author._id) {
+        if (user !== post.author.id) {
             return res.json({ ok: false, message: "수정 실패2" });
         }
         //$set =>정보가 없는걸 빈칸으로 하지않고 바뀐 내용만 저장하는것!
@@ -55,10 +56,20 @@ router.put("/:postId", async function (req, res) {
 
 //delete
 router.delete("/:postId", async function (req, res) {
+    const user = req.user.id;
+    const post = await Post.findOne({ _id: req.params.postId });
     try {
-        const post = await Post.deleteOne({ _id: req.params.postId });
-        res.json({ ok: true, message: "삭제 완료" });
+        if (post.author._id == user) {
+            await Post.deleteOne({ _id: req.params.postId });
+            res.json({ ok: true, message: "삭제 완료" });
+        } else {
+            res.json({
+                ok: false,
+                message: "해당 게시글의 작성자가 아닙니다.",
+            });
+        }
     } catch (err) {
+        console.log(err);
         res.json({ ok: false, message: "삭제 실패", err });
     }
 });
