@@ -373,6 +373,7 @@ function modal(
     commentRender(objectId, userId);
     heartPost(objectId, likes);
     addAmendBtn(userId, author._id, objectId);
+    preventAction(userId);
 }
 
 // 모달창 닫기 이벤트 생성
@@ -441,4 +442,17 @@ function addAmendBtn(user, author, objectId) {
     arrow.addEventListener("blur", () => {
         arrow.classList.remove("toggle");
     });
+}
+
+function preventAction(user) {
+    const commentUpload = document.querySelector("#commentUpload");
+    const comment_text = document.querySelector(".comment_text");
+    if (!user) {
+        commentUpload.classList.add("not_allow");
+        commentUpload.disabled = true;
+        commentUpload.style.cursor = "not-allowed";
+        comment_text.disabled = true;
+        comment_text.style.cursor = "not-allowed";
+        comment_text.placeholder = "로그인 후 이용해주세요";
+    }
 }
