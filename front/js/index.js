@@ -422,7 +422,7 @@ function commentPost(author, objectId, commentId) {
 }
 
 function addAmendBtn(user, author, objectId) {
-    // if (author !== user) return;
+    if (author !== user) return;
     const target = document.querySelector(".user_name");
     const arrow = document.querySelector("#arrow-box");
     const extra = document.createElement("div");
