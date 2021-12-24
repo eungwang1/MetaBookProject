@@ -16,18 +16,11 @@ window.addEventListener("DOMContentLoaded", async () => {
             const res = await axios.get(
                 `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/page/detail/${objectId}`
             );
+            console.log(res.data);
 
-            const { author, content, title, thumbnailUrl, metaUrl, likeCount } =
-                res.data.post;
-            modal(
-                metaUrl,
-                title,
-                content,
-                thumbnailUrl,
-                author,
-                objectId,
-                likeCount
-            );
+            const { author, content, title, thumbnailUrl, metaUrl, likeCount, likes } = res.data.post;
+            console.log(likes.includes("61c35dfce7e0d57cfd1a7cb1"));
+            modal(metaUrl, title, content, thumbnailUrl, author, objectId, likeCount, likes);
             $("html, body").addClass("not_scroll");
             preventAction(userId);
             //true : 로그인 false : 로그아웃 !
@@ -35,19 +28,31 @@ window.addEventListener("DOMContentLoaded", async () => {
     );
 });
 
-function heartPost(objectId) {
+function heartPost(objectId, likes) {
     const heart = document.querySelector(".sprite_heart_icon_outline");
-    heart.addEventListener("click", () => {
-        axios.post(
-            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/page/detail//api/post/${objectId}/like`
+    const like_text = document.getElementById("like-count-39");
+    console.log(like_text.innerText);
+    heart.addEventListener("click", async () => {
+        console.log(objectId);
+        await axios.put(
+            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/post/${objectId}/like`
         );
+        const res = await axios.get(
+            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/page/detail/${objectId}`
+        );
+        like_text.innerText = res.data.post.likeCount;
     });
 }
 
 // 좋아요 토글 함수
-function heartToggle() {
-    const heart = document.querySelector(".sprite_heart_icon_outline");
+function heartToggle(likes) {
     let heart_boolean = true;
+    const heart = document.querySelector(".sprite_heart_icon_outline");
+    if (likes.includes(userId)) {
+        heart.style.backgroundPosition = "-26px -261px";
+        heart_boolean = false;
+    }
+
     heart.addEventListener("click", () => {
         if (heart_boolean == true) {
             // 빨간하트
@@ -74,10 +79,6 @@ function commentHtml(data, commentId) {
         <button data-name="comment_delete"  class="comment_delete" data-id = ${commentId} >x</button>
         </div>`;
 }
-
-// function deletefunc() {
-//     console.log("a");
-// }
 
 // 모달 HTML
 function modalHtml(metaUrl, title, content, thumbnailUrl, author, likeCount) {
@@ -136,9 +137,7 @@ function modalHtml(metaUrl, title, content, thumbnailUrl, author, likeCount) {
 
 function commentRender_supporter(objectId) {
     axios
-        .get(
-            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment/${objectId}`
-        )
+        .get(`http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment/${objectId}`)
         .then((res) => {
             res.data.forEach((data, idx) => {
                 const { _id } = data;
@@ -146,33 +145,28 @@ function commentRender_supporter(objectId) {
                 $(".comment_box").append(commentHtml(data, commentId));
                 // const deleteBtn = document.querySelector(".comment_delete");
                 const comment_box = document.querySelector(".comment_box");
-                const deleteBtn =
-                    document.getElementsByClassName("comment_delete")[idx];
-                document
-                    .getElementsByClassName("comment_delete")
-                    [idx].addEventListener("click", (e) => {
-                        const comment_delete_data = {
-                            postId: objectId,
-                            commentId: commentId,
-                        };
-                        console.log(comment_delete_data);
-                        axios
-                            .delete(
-                                `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment`,
+                const deleteBtn = document.getElementsByClassName("comment_delete")[idx];
+                document.getElementsByClassName("comment_delete")[idx].addEventListener("click", (e) => {
+                    const comment_delete_data = {
+                        postId: objectId,
+                        commentId: commentId,
+                    };
+                    console.log(comment_delete_data);
+                    axios
+                        .delete(
+                            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment`,
 
-                                {
-                                    data: comment_delete_data,
-                                }
-                            )
-                            .then((res) => {
-                                while (comment_box.hasChildNodes()) {
-                                    comment_box.removeChild(
-                                        comment_box.firstChild
-                                    );
-                                }
-                                commentRender_supporter(objectId);
-                            });
-                    });
+                            {
+                                data: comment_delete_data,
+                            }
+                        )
+                        .then((res) => {
+                            while (comment_box.hasChildNodes()) {
+                                comment_box.removeChild(comment_box.firstChild);
+                            }
+                            commentRender_supporter(objectId);
+                        });
+                });
             });
         });
 }
@@ -180,9 +174,7 @@ function commentRender_supporter(objectId) {
 // 댓글삭제 이벤트 생성 함수
 function commentRender(objectId) {
     axios
-        .get(
-            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment/${objectId}`
-        )
+        .get(`http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment/${objectId}`)
         .then((res) => {
             res.data.forEach((data, idx) => {
                 const { _id } = data;
@@ -190,58 +182,44 @@ function commentRender(objectId) {
                 $(".comment_box").append(commentHtml(data, commentId));
                 // const deleteBtn = document.querySelector(".comment_delete");
                 const comment_box = document.querySelector(".comment_box");
-                const deleteBtn =
-                    document.getElementsByClassName("comment_delete")[idx];
-                document
-                    .getElementsByClassName("comment_delete")
-                    [idx].addEventListener("click", (e) => {
-                        const comment_delete_data = {
-                            postId: objectId,
-                            commentId: commentId,
-                        };
-                        console.log(comment_delete_data);
-                        axios
-                            .delete(
-                                `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment`,
+                const deleteBtn = document.getElementsByClassName("comment_delete")[idx];
+                document.getElementsByClassName("comment_delete")[idx].addEventListener("click", (e) => {
+                    const comment_delete_data = {
+                        postId: objectId,
+                        commentId: commentId,
+                    };
+                    console.log(comment_delete_data);
+                    axios
+                        .delete(
+                            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/comment`,
 
-                                {
-                                    data: comment_delete_data,
-                                }
-                            )
-                            .then((res) => {
-                                while (comment_box.hasChildNodes()) {
-                                    comment_box.removeChild(
-                                        comment_box.firstChild
-                                    );
-                                }
-                                commentRender_supporter(objectId);
-                            });
-                        // 기존 댓글 삭제 및 다시 불러오기.
-                    });
+                            {
+                                data: comment_delete_data,
+                            }
+                        )
+                        .then((res) => {
+                            while (comment_box.hasChildNodes()) {
+                                comment_box.removeChild(comment_box.firstChild);
+                            }
+                            commentRender_supporter(objectId);
+                        });
+                    // 기존 댓글 삭제 및 다시 불러오기.
+                });
             });
         });
 }
 
 // 모달창이 켜졌을 때 실행되는 함수
-function modal(
-    metaUrl,
-    title,
-    content,
-    thumbnailUrl,
-    author,
-    objectId,
-    likeCount
-) {
-    $("#modal-select").append(
-        modalHtml(metaUrl, title, content, thumbnailUrl, author, likeCount)
-    );
+function modal(metaUrl, title, content, thumbnailUrl, author, objectId, likeCount, likes) {
+    $("#modal-select").append(modalHtml(metaUrl, title, content, thumbnailUrl, author, likeCount));
     const comment_box = document.querySelector(".comment_box");
-    heartToggle();
+    heartToggle(likes);
     closeModal();
     commentPost(author, objectId);
     console.log(objectId);
     // commentRendering(comment_box, objectId, commentId);
     commentRender(objectId);
+    heartPost(objectId, likes);
 }
 
 // 모달창 닫기 이벤트 생성
