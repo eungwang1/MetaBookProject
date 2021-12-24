@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 async function getPostContent(postId) {
     try {
-        const res = await axios.get(`/api/post/${postId}`);
+        const res = await axios.get(`/api/page/detail/${postId}`);
         const { post } = res.data;
         if (res.data.ok) {
             $title.value = post.title;
