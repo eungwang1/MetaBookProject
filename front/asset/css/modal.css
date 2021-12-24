@@ -64,6 +64,20 @@ body {
     align-items: center;
     padding: 10px 20px;
     height: 5%;
+    position: relative;
+}
+
+.contents .top .amend {
+    z-index: 999;
+    display: block;
+    position: absolute;
+    top: 35rem;
+    right: -0.8rem;
+    width: 0.8rem;
+    font-weight: 400;
+    font-size: 0.5rem;
+    color: #fff;
+    background-color: #2db0e6;
 }
 
 .contents .top .profile_img {
@@ -82,6 +96,7 @@ body {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
+    align-items: center;
     flex-grow: 1;
 }
 
@@ -95,6 +110,55 @@ body {
 
 .user_name {
     padding: 5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.user_name #arrow-box {
+    width: 20px;
+    height: 10px;
+    cursor: pointer;
+}
+
+.user_name #arrow-box .extra {
+    margin-left: 10px;
+    width: 5px;
+    height: 5px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(45deg);
+    transition: transform 0.3s;
+}
+
+.user_name #arrow-box.toggle .extra {
+    transform: rotate(225deg);
+}
+.user_name ul {
+    transform: translateX(-10px);
+    width: 4rem;
+    position: absolute;
+    top: 28px;
+    border-radius: 3px;
+    background-color: #fff;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s;
+}
+
+.user_name #arrow-box.toggle ~ ul {
+    max-height: 200px;
+}
+
+.user_name ul li {
+    font-size: 0.6rem;
+    width: 100%;
+    text-align: center;
+}
+
+.user_name ul li a {
+    display: block;
+    padding: 0.22rem 0.5rem;
 }
 
 .gather_link {
@@ -133,8 +197,14 @@ body {
     display: flex;
     font-size: 1.1rem;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
+    /* align-items: center; */
+    padding: 15px 15px 10px;
+}
+
+.contents .bottom_icons .maintitle {
+    width: 80%;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
 }
 
 .contents .bottom_icons .left_icons {
@@ -150,10 +220,6 @@ body {
 
 .sprite_heart_icon_outline.on {
     background: url("../imgs/background01.png") no-repeat -26px -261px;
-}
-
-.contents .likes {
-    /* padding: 5px 20px; */
 }
 
 .contents .comment_container {
@@ -190,6 +256,7 @@ body {
 .contents .nick_name {
     font-weight: bold;
     font-size: 1rem;
+    /* line-height: 1rem; */
 }
 
 .contents .maintext {
