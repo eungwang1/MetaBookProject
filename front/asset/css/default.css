@@ -1,0 +1,198 @@
+html {
+    font-size: 20px;
+}
+body {
+    font-size: 1rem;
+}
+
+body,
+div,
+ul,
+li,
+dl,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+fieldset,
+legend,
+p,
+select,
+table,
+th,
+td,
+tr,
+textarea,
+button,
+form,
+figure,
+figcaption {
+    margin: 0;
+    padding: 0;
+}
+
+/* 링크 초기화 */
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+/* 폰트 초기화*/
+body,
+input,
+textarea,
+select,
+button,
+table {
+    font: 600 16px/18px "Open Sans", sans-serif;
+}
+
+body {
+    background-color: #36393f;
+}
+
+/* 폰트 스타일 초기화 */
+em,
+address {
+    font-style: normal;
+}
+
+/* 블릿기호 초기화 */
+ul,
+li,
+ol {
+    list-style: none;
+}
+
+/* 반응형 이미지 */
+img,
+video {
+    width: 100%;
+}
+/*---------------default------------  */
+
+#header {
+    display: flex;
+    padding: 0 1rem;
+    justify-content: space-between;
+    background-color: #2f3036;
+}
+
+#header h1 {
+    height: 100%;
+    line-height: 100%;
+}
+
+#header h1 a {
+    display: inline-block;
+    width: 12rem;
+    height: 2.5rem;
+    background: url(../img/logo_horizon.png) center no-repeat;
+    background-size: contain;
+}
+
+#header .default-menu ul {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /*밑으로 붙이길 원한다면 flex-end*/
+}
+
+#header .default-menu ul li a {
+    display: block;
+    width: 4rem;
+    height: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.8rem;
+    font-size: 0.9rem;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+#header .default-menu ul li a:hover {
+    color: #2db0e6;
+}
+
+/* footer css */
+.site-footer {
+    background-color: #2f3036;
+    padding: 0px 0px 20px;
+    font-size: 15px;
+    line-height: 24px;
+    color: #737373;
+    /* position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%; */
+}
+
+.site-footer .footer-container {
+    /* width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "text icon"; */
+    display: flex;
+    justify-content: space-between;
+}
+.site-footer .footer-text {
+    grid-area: text;
+}
+.site-footer .footer-icon {
+    grid-area: icon;
+}
+.site-footer a {
+    color: #737373;
+}
+.site-footer a:hover {
+    color: #3366cc;
+    text-decoration: none;
+}
+
+.site-footer .social-icons {
+    /* text-align: right;
+    width: 100%;
+    padding-right: 100px; */
+}
+.site-footer .social-icons a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 6px;
+    margin-right: 0;
+    border-radius: 100%;
+    background-color: #33353d;
+}
+.copyright-text {
+    padding-top: 20px;
+    padding-left: 30px;
+}
+
+.social-icons {
+    padding-right: 60px;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    display: block;
+    /* width: 300px; */
+}
+.social-icons li {
+    display: inline-block;
+    padding-top: 10px;
+}
+
+.social-icons a {
+    background-color: #eceeef;
+    color: #818a91;
+    display: inline-block;
+    line-height: 44px;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    margin-right: 8px;
+    border-radius: 100%;
+}
