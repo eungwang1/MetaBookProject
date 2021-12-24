@@ -7,7 +7,7 @@ const multer = require("multer");
 router.get("/:num", async function (req, res) {
     const page = Number(req.params.num || 1);
     // 기본값 1
-    const perPage = 1;
+    const perPage = 16;
     try {
         const [total, posts, top3Post] = await Promise.all([
             Post.countDocuments({}),
