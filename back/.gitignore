@@ -136,3 +136,4 @@ dist
 
 uploads/*.png
 uploads/*.jpg
+.DS_Store

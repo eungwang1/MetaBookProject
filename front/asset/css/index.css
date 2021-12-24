@@ -139,3 +139,15 @@
     display: block;
     color: #fff;
 }
+
+.page_board {
+    margin: 0 auto;
+}
+
+.page_board li {
+    float: left;
+    cursor: pointer;
+    /* color: white; */
+    padding-left: 2px;
+    font-size: 24px;
+}
