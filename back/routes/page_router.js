@@ -16,7 +16,7 @@ router.get("/:num", async function (req, res) {
                 .skip(perPage * (page - 1))
                 .limit(perPage)
                 .populate("author", "name"),
-            Post.find({}).sort({ likeCount: -1 }).limit(3),
+            Post.find({}).sort({ likeCount: -1 }).limit(3).populate("author"),
         ]);
         // total, posts 를 Promise.all 을 사용해 동시에 호출하기
 

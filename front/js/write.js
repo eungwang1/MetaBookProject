@@ -1,3 +1,6 @@
+// ---------------import-------------------
+import { getUserId, generateLogout, preventAccess } from "./util.js";
+
 // --------------------nodes---------------------------
 const inputFile = document.querySelector("#upload-file");
 const filename = document.querySelector("#write-form .display_box span");
@@ -8,33 +11,32 @@ const $content = postSubmitForm.querySelector("#post_content");
 const $link = postSubmitForm.querySelector("#post_link");
 const postId = window.location.href.split("?")[1];
 
-const dummy = {
-    title: "제목",
-    content: "내용입니다",
-    metaUrl: "hello",
-    thumbnailUrl: "http://localhost:5500/front/asset/img/logo.png",
-};
-
 //------- 수정 화면 렌더 ----------
-window.addEventListener("DOMContentLoaded", () => {
+let userId = null;
+window.addEventListener("DOMContentLoaded", async () => {
+    userId = await getUserId();
+    generateLogout(userId);
+    preventAccess(userId);
     if (postId) {
-        // console.log(window.location.href.split("?")[1]);
         getPostContent(postId);
     }
 });
 
 async function getPostContent(postId) {
     try {
-        // const post = await axios.get(`/${postId}`);
-        const post = dummy;
-        $title.value = post.title;
-        $content.value = post.content;
-        $link.value = post.metaUrl;
-        thumb_img.src = post.thumbnailUrl;
-        thumb_img.classList.add("show");
-        filename.textContent = "";
+        const res = await axios.get(`/api/page/detail/${postId}`);
+        const { post } = res.data;
+        if (res.data.ok) {
+            $title.value = post.title;
+            $content.value = post.content;
+            $link.value = post.metaUrl;
+            thumb_img.src = `/api/images/${post.thumbnailUrl}`;
+            thumb_img.classList.add("show");
+            filename.textContent = "";
+        }
     } catch (err) {
-        alert(err);
+        alert("게시글을 불러오는 중 오류가 발생했습니다.");
+        window.location.href = "../index.html";
     }
 }
 
@@ -47,7 +49,6 @@ inputFile.addEventListener("change", (e) => {
 });
 
 function showFile(file) {
-    // console.log(URL.createObjectURL(file));
     thumb_img.classList.add("show");
     thumb_img.src = URL.createObjectURL(file);
     filename.textContent = file.name;
@@ -76,27 +77,31 @@ async function requestUploadPost(file, postId) {
         (!textData.metaUrl.includes("gather") || !regex.test(textData.metaUrl))
     )
         return alert("올바른 url을 입력해 주세요");
+
+    if (!file) return alert("이미지는 필수 요소입니다.");
+
     if (file) {
         const data = new FormData();
-        data.append("file", file);
+        data.append("userfile", file);
         data.append("name", file.name);
         try {
-            // await axios.post("/", data);
+            const res = await axios.post("/api/upload", data);
+            textData.thumbnailUrl = res.data.thumbnailUrl;
         } catch (err) {
             return alert("사진 업로드 중 오류가 발생했습니다.");
         }
     }
     try {
         console.log(textData);
+        let res;
         if (postId) {
-            const res = await axios.put("/", textData);
+            res = await axios.put(`/api/post/${postId}`, textData);
         } else {
-            const res = await axios.post("/", textData);
+            res = await axios.post("/api/post", textData);
         }
-        // if (res.data.ok) {
-        //     window.location.href = "";
-        // }
-        // window.location.href = "http://localhost:5500/front/index.html";
+        if (res.data.ok) {
+            window.location.href = "../index.html";
+        }
     } catch (err) {
         return alert("포스트 업로드 중 오류가 발생했습니다.");
     }
