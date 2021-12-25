@@ -148,17 +148,23 @@ function createClickEvent(userId) {
     );
 }
 
-function heartPost(objectId, likes) {
+function heartPost(objectId, likes, userId) {
     const heart = document.querySelector(".sprite_heart_icon_outline");
     const like_text = document.getElementById("like-count-39");
     heart.addEventListener("click", async () => {
-        await axios.put(
+        const res = await axios.put(
             `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/post/${objectId}/like`
         );
-        const res = await axios.get(
-            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/page/detail/${objectId}`
-        );
-        like_text.innerText = res.data.post.likeCount;
+        if (res.data.ok) {
+            const likeres = await axios.get(`/api/page/detail/${objectId}`);
+            if (likeres.data.post.likes.includes(userId)) {
+                heart.style.backgroundPosition = "-26px -261px";
+                like_text.innerText = res.data.post.likeCount;
+            } else {
+                heart.style.backgroundPosition = "-52px -261px";
+                like_text.innerText = res.data.post.likeCount;
+            }
+        }
     });
 }
 
@@ -170,21 +176,6 @@ function heartToggle(likes, userId) {
         heart.style.backgroundPosition = "-26px -261px";
         heart_boolean = false;
     }
-
-    heart.addEventListener("click", (userId) => {
-        if (userId) return;
-        if (heart_boolean == true) {
-            // 빨간하트
-            heart.style.backgroundPosition = "-26px -261px";
-            heart_boolean = false;
-            // 좋아요 +1
-        } else {
-            // 빈하트
-            heart.style.backgroundPosition = "-52px -261px";
-            heart_boolean = true;
-            // 좋아요 -1
-        }
-    });
 }
 
 // 댓글 HTML
@@ -371,7 +362,7 @@ function modal(
     commentPost(author, objectId);
     // commentRendering(comment_box, objectId, commentId);
     commentRender(objectId, userId);
-    heartPost(objectId, likes);
+    heartPost(objectId, likes, userId);
     addAmendBtn(userId, author._id, objectId);
     preventAction(userId);
 }
