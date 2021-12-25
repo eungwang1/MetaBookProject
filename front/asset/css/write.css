@@ -1,0 +1,178 @@
+#write-main {
+    max-width: 70rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 53px - 76px);
+}
+
+#write-main #write-form {
+    width: 100%;
+    height: 50vh;
+}
+
+#write-main #write-form form {
+    display: flex;
+    gap: 1rem;
+    height: 100%;
+}
+
+#write-main #write-form form input,
+#write-main #write-form form textarea {
+    box-sizing: border-box;
+    padding: 1rem;
+    color: #fff;
+    background-color: #36393f;
+    border: 2px solid #fff;
+    border-radius: 0.3rem;
+    box-shadow: none;
+    resize: none;
+    transition: all 0.3s ease;
+}
+
+#write-main #write-form form input:focus,
+#write-main #write-form form textarea:focus {
+    outline: none;
+    border: 2px solid #2db0e6;
+}
+
+#write-main #write-form .form-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 65%;
+}
+
+#write-main #write-form .form-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 35%;
+    position: relative;
+}
+
+#write-main #write-form .form-left #post_title {
+    height: 5%;
+}
+
+#write-main #write-form .form-left #post_content {
+    height: 95%;
+}
+
+#write-main #write-form .form-right .filebox {
+    height: 60%;
+    position: relative;
+}
+
+#write-main #write-form .form-right .filebox #upload-file {
+    display: none;
+}
+
+#write-main #write-form .form-right .filebox #file-button {
+    box-sizing: border-box;
+    display: block;
+    padding: 0.5rem;
+    color: #fff;
+    transition: all 0.3s ease;
+    border: 2px solid #fff;
+    border-radius: 0.3rem;
+    box-shadow: none;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#write-main #write-form .form-right .filebox #file-button:hover {
+    border: 2px solid #2db0e6;
+}
+
+#write-main #write-form .form-right .filebox .display_box {
+    z-index: -1;
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#write-main #write-form .form-right .filebox .display_box span {
+}
+
+#write-main #write-form .form-right .filebox .display_box .display_thumb {
+    display: none;
+}
+
+#write-main #write-form .form-right .filebox .display_box .display_thumb.show {
+    display: block;
+    /* width: 80%; */
+    height: 80%;
+    object-fit: cover;
+}
+
+#write-main #write-form .form-right #post_link {
+    height: 8%;
+}
+
+#write-main #write-form .form-right #write-submit {
+    border: none;
+    border-radius: 0.25rem;
+    background-color: #2db0e6;
+    color: #fff;
+    padding: 0.5rem 1.3rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+
+#write-main #write-form .form-right #write-submit:hover {
+    background-color: #217fa7;
+}
+
+@media (max-width: 1024px) {
+    #write-main #write-form form {
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    #write-main #write-form .form-left {
+        height: 50%;
+    }
+
+    #write-main #write-form .form-right {
+        gap: 20px;
+        width: 65%;
+        height: 50%;
+        flex-direction: column-reverse;
+        /* justify-content: space-evenly; */
+    }
+
+    #write-main #write-form .form-right .filebox {
+        /* flex: 0.8; */
+        width: 60%;
+        height: 100%;
+    }
+
+    #write-main #write-form .form-right #post_link {
+        /* flex: 1; */
+    }
+}
+
+@media (max-width: 768px) {
+    #write-main #write-form .form-left {
+        width: 92%;
+    }
+
+    #write-main #write-form .form-right {
+        width: 92%;
+    }
+}

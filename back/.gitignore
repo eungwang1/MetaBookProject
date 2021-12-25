@@ -133,3 +133,8 @@ dist
 .svelte-kit
 
 # End of https://www.toptal.com/developers/gitignore/api/node
+
+uploads/*.png
+uploads/*.jpg
+uploads/*.jpeg
+.DS_Store
