@@ -3,7 +3,6 @@ export async function getUserId() {
     try {
         const res = await axios.get("/api/user");
         if (res.data.ok) {
-            console.log(res);
             return res.data.userId;
         }
         return null;
