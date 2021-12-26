@@ -73,7 +73,7 @@ async function requestUploadPost(file, postId) {
     if (textData.title === "") return alert("제목을 입력해주세요");
     // Url 유효성 검사, 해당 url gather 포함 여부 검사
     if (
-        $link.value &&
+        !$link.value &&
         (!textData.metaUrl.includes("gather") || !regex.test(textData.metaUrl))
     )
         return alert("올바른 url을 입력해 주세요");
