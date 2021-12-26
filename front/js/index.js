@@ -42,7 +42,6 @@ export async function render(page) {
 //화면에 보여줄 페이지 그리기
 export function paginate(first, last, prev, next, totalPage, currPage, userId) {
     $(".pages").empty();
-
     if (first > 5) $(".pages").append(`<li class="prev">&lt;</li>`);
 
     //마지막 페이지 처리
@@ -67,7 +66,7 @@ export function paginate(first, last, prev, next, totalPage, currPage, userId) {
         e.preventDefault();
         var num = Number(e.target.textContent);
         render(num);
-        paging(num);
+        paging(num, userId);
         createClickEvent(userId);
     });
 
@@ -75,7 +74,7 @@ export function paginate(first, last, prev, next, totalPage, currPage, userId) {
         e.preventDefault();
         $(".pages").empty();
         render(prev);
-        paging(prev);
+        paging(prev, userId);
         createClickEvent(userId);
     });
 
@@ -83,7 +82,7 @@ export function paginate(first, last, prev, next, totalPage, currPage, userId) {
         e.preventDefault();
         $(".pages").empty();
         render(next);
-        paging(next);
+        paging(next, userId);
         createClickEvent(userId);
     });
 }
@@ -147,7 +146,7 @@ function createClickEvent(userId) {
         })
     );
 }
-
+// 좋아요 버튼 클릭시 실행함수 -> 하트이미지 토글, 좋아요 수 변경
 function heartPost(objectId, likes, userId) {
     const heart = document.querySelector(".sprite_heart_icon_outline");
     const like_text = document.getElementById("like-count-39");
@@ -157,7 +156,8 @@ function heartPost(objectId, likes, userId) {
         );
         if (res.data.ok) {
             const likeres = await axios.get(`/api/page/detail/${objectId}`);
-            if (likeres.data.post.likes.includes(userId)) {
+            // if (likeres.data.post.likes.includes(userId))
+            if (heart.style.backgroundPosition === "-52px -261px") {
                 heart.style.backgroundPosition = "-26px -261px";
                 like_text.innerText = likeres.data.post.likeCount;
             } else {
@@ -168,13 +168,15 @@ function heartPost(objectId, likes, userId) {
     });
 }
 
-// 좋아요 토글 함수
+// 이전에 좋아요 눌렀던 사람의 경우, 좋아요 상태 유지 함수.
 function heartToggle(likes, userId) {
     let heart_boolean = true;
     const heart = document.querySelector(".sprite_heart_icon_outline");
     if (likes.includes(userId)) {
         heart.style.backgroundPosition = "-26px -261px";
         heart_boolean = false;
+    } else {
+        heart.style.backgroundPosition = "-52px -261px";
     }
 }
 
@@ -419,12 +421,31 @@ function addAmendBtn(user, author, objectId) {
     const extra = document.createElement("div");
     const dropWrap = document.createElement("ul");
     const menu = document.createElement("li");
+    const menu2 = document.createElement("li");
     const amend = document.createElement("a");
+    const amend2 = document.createElement("div");
     extra.classList.add("extra");
+
     amend.textContent = "수정하기";
-    amend.href = `/views/write.html?${objectId}`;
+    amend2.textContent = "삭제하기";
+    amend2.style.color = "#000";
+    amend2.style.cursor = "pointer";
+
+    amend2.addEventListener("click", async () => {
+        const res = await axios.delete(
+            `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/api/post/${objectId}`
+        );
+        if (res.data.ok) {
+            location.href =
+                "http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com";
+        }
+    });
+
+    amend.href = `http://elice-kdt-sw-1st-vm10.koreacentral.cloudapp.azure.com/views/write.html?${objectId}`;
     menu.appendChild(amend);
+    menu2.appendChild(amend2);
     dropWrap.appendChild(menu);
+    dropWrap.appendChild(menu2);
     target.appendChild(dropWrap);
     arrow.appendChild(extra);
     arrow.addEventListener("click", () => {
