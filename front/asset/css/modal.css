@@ -263,9 +263,10 @@ body {
 
 .contents .maintext {
     min-height: 3rem;
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: 0.2px;
     color: #fff;
+    line-height: 1.5;
     padding: 10px 20px 20px;
 }
 
