@@ -42,7 +42,6 @@ export async function render(page) {
 //화면에 보여줄 페이지 그리기
 export function paginate(first, last, prev, next, totalPage, currPage, userId) {
     $(".pages").empty();
-    userId = userId;
     if (first > 5) $(".pages").append(`<li class="prev">&lt;</li>`);
 
     //마지막 페이지 처리
@@ -173,8 +172,6 @@ function heartPost(objectId, likes, userId) {
 function heartToggle(likes, userId) {
     let heart_boolean = true;
     const heart = document.querySelector(".sprite_heart_icon_outline");
-    console.log(userId);
-    console.log(likes);
     if (likes.includes(userId)) {
         heart.style.backgroundPosition = "-26px -261px";
         heart_boolean = false;
