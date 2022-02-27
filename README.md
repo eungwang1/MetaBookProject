@@ -36,15 +36,24 @@
 5. 게시글 작성
     - 입력된 게시글 정보 서버 전송(author, title, content, img, link)
 
-#### <strong>기대효과</strong>
+## 4. 페이지별 화면
+| |
+:------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://user-images.githubusercontent.com/86244477/155904220-8e7063fa-5317-4425-936a-0a05e1949a7c.png" height="400" /> |
+| 메인 페이지 |
+| <img src="https://user-images.githubusercontent.com/86244477/155904232-bae582a9-1cee-4f03-94c3-e9b5cc08b7de.png" height="400" /> |
+| 글쓰기 페이지 |
+| <img src="https://user-images.githubusercontent.com/86244477/155904266-f042a319-7255-470c-9d31-033e9830e5d2.png" height="400" /> |
+| 상세 보기 모달창 |
+| <img src="https://user-images.githubusercontent.com/86244477/155904290-ff955d33-5c82-4177-9a8c-9dcd3d8a2d35.png" height="400" /> |
+| 로그인 및 회원가입 |
 
--   메타버스 생태계 활성화
 
-## 4. 프로젝트 구성도
+## 6. 프로젝트 구성도
 
 -   https://www.figma.com/file/JkbS0zNGpu6XPsB64C9VCa/layout?node-id=0%3A1
 
-## 5. 프로젝트 팀원 역할 분담
+## 7. 프로젝트 팀원 역할 분담
 
 | 이름   | 담당 업무            |
 | ------ | -------------------- |
